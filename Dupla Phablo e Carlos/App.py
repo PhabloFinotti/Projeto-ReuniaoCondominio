@@ -1,4 +1,4 @@
-from Usuarios import Usuarios
+from Condominos import Condominos
 from tkinter import *
 
 class Application:
@@ -44,14 +44,14 @@ class Application:
 		self.titulo["font"] = ("Calibri", "9", "bold")
 		self.titulo.pack ()
 
-		self.lblidusuario = Label(self.container2,
-		text="idUsuario:", font=self.fonte, width=10)
-		self.lblidusuario.pack(side=LEFT)
+		self.lblcond_apartamento = Label(self.container2,
+		text="Apartamento:", font=self.fonte, width=10)
+		self.lblcond_apartamento.pack(side=LEFT)
 
-		self.txtidusuario = Entry(self.container2)
-		self.txtidusuario["width"] = 10
-		self.txtidusuario["font"] = self.fonte
-		self.txtidusuario.pack(side=LEFT)
+		self.txtcond_apartamento = Entry(self.container2)
+		self.txtcond_apartamento["width"] = 10
+		self.txtcond_apartamento["font"] = self.fonte
+		self.txtcond_apartamento.pack(side=LEFT)
 
 		self.btnBuscar = Button(self.container2, text="Buscar",
 		font=self.fonte, width=10)
@@ -67,14 +67,23 @@ class Application:
 		self.txtnome["font"] = self.fonte
 		self.txtnome.pack(side=LEFT)
 
-		self.lbltelefone = Label(self.container4, text="Telefone:",
+		self.lblcpf = Label(self.container3, text="CPF:",
 		font=self.fonte, width=10)
-		self.lbltelefone.pack(side=LEFT)
+		self.lblcpf.pack(side=LEFT)
 
-		self.txttelefone = Entry(self.container4)
-		self.txttelefone["width"] = 25
-		self.txttelefone["font"] = self.fonte
-		self.txttelefone.pack(side=LEFT)
+		self.txtcpf = Entry(self.container3)
+		self.txtcpf["width"] = 25
+		self.txtcpf["font"] = self.fonte
+		self.txtcpf.pack(side=LEFT)
+		
+		self.lbltppessoa = Label(self.container4, text="Tipo Pessoa:",
+		font=self.fonte, width=10)
+		self.lbltppessoa.pack(side=LEFT)
+
+		self.txttppessoa = OptionMenu(self.container4,'F', 'F','J')
+		self.txttppessoa["width"] = 3
+		self.txttppessoa["font"] = self.fonte
+		self.txttppessoa.pack(side=LEFT)
 
 		self.lblemail= Label(self.container5, text="E-mail:",
 		font=self.fonte, width=10)
@@ -125,7 +134,7 @@ class Application:
 
 
 	def inserirUsuario(self):
-		user = Usuarios()
+		user = condominos()
 
 		user.nome = self.txtnome.get()
 		user.telefone = self.txttelefone.get()
@@ -135,7 +144,7 @@ class Application:
 
 		self.lblmsg["text"] = user.insertUser()
 
-		self.txtidusuario.delete(0, END)
+		self.txtcond_apartamento.delete(0, END)
 		self.txtnome.delete(0, END)
 		self.txttelefone.delete(0, END)
 		self.txtemail.delete(0, END)
@@ -145,9 +154,9 @@ class Application:
 
 
 	def alterarUsuario(self):
-		user = Usuarios()
+		user = condominos()
 
-		user.idusuario = self.txtidusuario.get()
+		user.cond_apartamento = self.txtcond_apartamento.get()
 		user.nome = self.txtnome.get()
 		user.telefone = self.txttelefone.get()
 		user.email = self.txtemail.get()
@@ -156,7 +165,7 @@ class Application:
 
 		self.lblmsg["text"] = user.updateUser()
 
-		self.txtidusuario.delete(0, END)
+		self.txtcond_apartamento.delete(0, END)
 		self.txtnome.delete(0, END)
 		self.txttelefone.delete(0, END)
 		self.txtemail.delete(0, END)
@@ -166,13 +175,13 @@ class Application:
 
 
 	def excluirUsuario(self):
-		user = Usuarios()
+		user = condominos()
 
-		user.idusuario = self.txtidusuario.get()
+		user.cond_apartamento = self.txtcond_apartamento.get()
 
 		self.lblmsg["text"] = user.deleteUser()
 
-		self.txtidusuario.delete(0, END)
+		self.txtcond_apartamento.delete(0, END)
 		self.txtnome.delete(0, END)
 		self.txttelefone.delete(0, END)
 		self.txtemail.delete(0, END)
@@ -181,14 +190,14 @@ class Application:
 
 
 	def buscarUsuario(self):
-		user = Usuarios()
+		user = condominos()
 
-		idusuario = self.txtidusuario.get()
+		cond_apartamento = self.txtcond_apartamento.get()
 
-		self.lblmsg["text"] = user.selectUser(idusuario)
+		self.lblmsg["text"] = user.selectCond(cond_apartamento)
 
-		self.txtidusuario.delete(0, END)
-		self.txtidusuario.insert(INSERT, user.idusuario)
+		self.txtcond_apartamento.delete(0, END)
+		self.txtcond_apartamento.insert(INSERT, user.cond_apartamento)
 
 		self.txtnome.delete(0, END)
 		self.txtnome.insert(INSERT, user.nome)
