@@ -78,7 +78,7 @@ class Application:
 		self.txtcpf.pack(side=LEFT)
 
 		self.lbltppessoa = Label(self.container4, text="Tipo Pessoa: ",
-		font=self.fonte, width=10)
+		font=self.fonte, width=13)
 		self.lbltppessoa.pack(side=LEFT)
 
 		self.txttppessoa = Entry(self.container4)
@@ -87,7 +87,7 @@ class Application:
 		self.txttppessoa.pack(side=LEFT)
 
 		self.lblrg = Label(self.container4, text="RG: ",
-		font=self.fonte, width=10)
+		font=self.fonte, width=7)
 		self.lblrg.pack(side=LEFT)
 
 		self.txtrg = Entry(self.container4)
@@ -96,10 +96,10 @@ class Application:
 		self.txtrg.pack(side=LEFT)
 
 		self.lblnascimento= Label(self.container4, text="Data de Nascimento: ",
-		font=self.fonte, width=10)
+		font=self.fonte, width=20)
 		self.lblnascimento.pack(side=LEFT)
 
-		self.txtnascimento = DateEntry(self.container5)
+		self.txtnascimento = DateEntry(self.container4)
 		self.txtnascimento["width"] = 10
 		self.txtnascimento["font"] = self.fonte
 		self.txtnascimento.pack(side=LEFT)

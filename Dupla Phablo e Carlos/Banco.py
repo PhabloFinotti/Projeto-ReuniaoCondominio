@@ -11,10 +11,11 @@ class Banco():
 		c = self.conexao.cursor()
 
 		c.execute("""create table if not exists condominos (
-					 cond_apartamento integer primary key autoincrement ,
+					 cond_id integer primary key autoincrement,
 					 cond_apartamento int,
-					 cond_cpf varchar(255),
-					 cond_tppessoa varchar(20),
+					 cond_cpf varchar(14),
+					 cond_nome varchar(255),
+					 cond_tppessoa varchar(1),
 					 cond_rg varchar(20),
 					 cond_nascimento date,
 					 cond_email varchar(50),
