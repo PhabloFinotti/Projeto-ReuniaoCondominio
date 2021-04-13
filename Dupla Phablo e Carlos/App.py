@@ -46,7 +46,7 @@ class Application:
 		self.titulo.pack ()
 
 		self.lblcond_apartamento = Label(self.container2,
-		text="Apartamento: ", font=self.fonte, width=10)
+		text="Apartamento: ", font=self.fonte, width=15)
 		self.lblcond_apartamento.pack(side=LEFT)
 
 		self.txtcond_apartamento = Entry(self.container2)
@@ -54,11 +54,15 @@ class Application:
 		self.txtcond_apartamento["font"] = self.fonte
 		self.txtcond_apartamento.pack(side=LEFT)
 
+
+		# Botão de Busca
 		self.btnBuscar = Button(self.container2, text="Buscar",
 		font=self.fonte, width=10)
 		self.btnBuscar["command"] = self.buscarUsuario
 		self.btnBuscar.pack(side=RIGHT)
 
+
+		# Nome usuário
 		self.lblnome = Label(self.container3, text="Nome: ",
 		font=self.fonte, width=10)
 		self.lblnome.pack(side=LEFT)
@@ -68,6 +72,8 @@ class Application:
 		self.txtnome["font"] = self.fonte
 		self.txtnome.pack(side=LEFT)
 
+
+		# CPF Usuário
 		self.lblcpf = Label(self.container3, text="CPF: ",
 		font=self.fonte, width=10)
 		self.lblcpf.pack(side=LEFT)
@@ -77,6 +83,8 @@ class Application:
 		self.txtcpf["font"] = self.fonte
 		self.txtcpf.pack(side=LEFT)
 
+
+		# Tipo de pessoa (Física ou Jurídica)
 		self.lbltppessoa = Label(self.container4, text="Tipo Pessoa: ",
 		font=self.fonte, width=13)
 		self.lbltppessoa.pack(side=LEFT)
@@ -86,6 +94,8 @@ class Application:
 		self.txttppessoa["font"] = self.fonte
 		self.txttppessoa.pack(side=LEFT)
 
+
+		# RG do Usuário
 		self.lblrg = Label(self.container4, text="RG: ",
 		font=self.fonte, width=7)
 		self.lblrg.pack(side=LEFT)
@@ -95,58 +105,92 @@ class Application:
 		self.txtrg["font"] = self.fonte
 		self.txtrg.pack(side=LEFT)
 
-		self.lblnascimento= Label(self.container4, text="Data de Nascimento: ",
+
+		# Data de Nascimento
+		self.lblNascimento= Label(self.container4, text="Data de Nascimento: ",
 		font=self.fonte, width=20)
-		self.lblnascimento.pack(side=LEFT)
+		self.lblNascimento.pack(side=LEFT)
 
-		self.txtnascimento = DateEntry(self.container4)
-		self.txtnascimento["width"] = 10
-		self.txtnascimento["font"] = self.fonte
-		self.txtnascimento.pack(side=LEFT)
+		self.txtNascimento = DateEntry(self.container4)
+		self.txtNascimento["width"] = 10
+		self.txtNascimento["font"] = self.fonte
+		self.txtNascimento.pack(side=LEFT)
 
 
-		self.lblemail= Label(self.container5, text="E-mail: ",
+		# Usuário é Adimplente
+		self.txtAdimplente = Checkbutton(self.container5, text='Adimplente', onvalue=1, offvalue=0)
+		self.txtAdimplente["width"] = 10
+		self.txtAdimplente["font"] = self.fonte
+		self.txtAdimplente.pack(side=LEFT)
+
+
+		# Email Usuário
+		self.lblEmail= Label(self.container5, text="E-mail: ",
 		font=self.fonte, width=10)
-		self.lblemail.pack(side=LEFT)
+		self.lblEmail.pack(side=LEFT)
 
-		self.txtemail = Entry(self.container5)
-		self.txtemail["width"] = 25
-		self.txtemail["font"] = self.fonte
-		self.txtemail.pack(side=LEFT)
+		self.txtEmail = Entry(self.container5)
+		self.txtEmail["width"] = 25
+		self.txtEmail["font"] = self.fonte
+		self.txtEmail.pack(side=LEFT)
 
-		self.lblusuario= Label(self.container6, text="Usuário: ",
+		# Título dos Telefones
+		self.tituloTel = Label(self.container6, text="Informe os telefones : ")
+		self.tituloTel["font"] = ("Calibri", "9", "bold")
+		self.tituloTel.pack ()
+
+		#Telefone Residência
+		self.lblTelResidencia= Label(self.container6, text="Residencial: ",
 		font=self.fonte, width=10)
-		self.lblusuario.pack(side=LEFT)
+		self.lblTelResidencia.pack(side=LEFT)
 
-		self.txtusuario = Entry(self.container6)
-		self.txtusuario["width"] = 25
-		self.txtusuario["font"] = self.fonte
-		self.txtusuario.pack(side=LEFT)
+		self.txtTelResidencia = Entry(self.container6)
+		self.txtTelResidencia["width"] = 25
+		self.txtTelResidencia["font"] = self.fonte
+		self.txtTelResidencia.pack(side=LEFT)
 
-		self.lblsenha= Label(self.container7, text="Senha: ",
+
+		#Telefone Comercial
+		self.lblTelComercial= Label(self.container7, text="Comercial: ",
 		font=self.fonte, width=10)
-		self.lblsenha.pack(side=LEFT)
+		self.lblTelComercial.pack(side=LEFT)
 
-		self.txtsenha = Entry(self.container7)
-		self.txtsenha["width"] = 25
-		self.txtsenha["show"] = "*"
-		self.txtsenha["font"] = self.fonte
-		self.txtsenha.pack(side=LEFT)
+		self.txtTelComercial = Entry(self.container7)
+		self.txtTelComercial["width"] = 25
+		self.txtTelComercial["font"] = self.fonte
+		self.txtTelComercial.pack(side=LEFT)
 
-		self.bntInsert = Button(self.container8, text="Inserir",
+
+		#Telefone Celular
+		self.lblTelCelular= Label(self.container8, text="Celular: ",
+		font=self.fonte, width=10)
+		self.lblTelCelular.pack(side=LEFT)
+
+		self.txtTelCelular = Entry(self.container8)
+		self.txtTelCelular["width"] = 25
+		self.txtTelCelular["show"] = "*"
+		self.txtTelCelular["font"] = self.fonte
+		self.txtTelCelular.pack(side=LEFT)
+
+
+		#Botão inserir
+		self.btnInsert = Button(self.container9, text="Inserir",
 		font=self.fonte, width=12)
-		self.bntInsert["command"] = self.inserirUsuario
-		self.bntInsert.pack (side=LEFT)
+		self.btnInsert["command"] = self.inserirUsuario
+		self.btnInsert.pack (side=LEFT)
 
-		self.bntAlterar = Button(self.container8, text="Alterar",
-		font=self.fonte, width=12)
-		self.bntAlterar["command"] = self.alterarUsuario
-		self.bntAlterar.pack (side=LEFT)
 
-		self.bntExcluir = Button(self.container8, text="Excluir",
+		#Botão Alterar Dados do banco (UPDATE)
+		self.btnAlterar = Button(self.container9, text="Alterar",
 		font=self.fonte, width=12)
-		self.bntExcluir["command"] = self.excluirUsuario
-		self.bntExcluir.pack(side=LEFT)
+		self.btnAlterar["command"] = self.alterarUsuario
+		self.btnAlterar.pack (side=LEFT)
+
+		#Botão Deletar Dados do banco (DELETE)
+		self.btnExcluir = Button(self.container9, text="Excluir",
+		font=self.fonte, width=12)
+		self.btnExcluir["command"] = self.excluirUsuario
+		self.btnExcluir.pack(side=LEFT)
 
 		self.lblmsg = Label(self.container9, text="")
 		self.lblmsg["font"] = ("Verdana", "9", "italic")
@@ -157,8 +201,8 @@ class Application:
 		user = condominos()
 
 		user.nome = self.txtnome.get()
-		user.telefone = self.txttelefone.get()
-		user.email = self.txtemail.get()
+		user.telefone = self.txtTelefone.get()
+		user.email = self.txtEmail.get()
 		user.usuario = self.txtusuario.get()
 		user.senha = self.txtsenha.get()
 
@@ -166,8 +210,8 @@ class Application:
 
 		self.txtcond_apartamento.delete(0, END)
 		self.txtnome.delete(0, END)
-		self.txttelefone.delete(0, END)
-		self.txtemail.delete(0, END)
+		self.txtTelefone.delete(0, END)
+		self.txtEmail.delete(0, END)
 		self.txtusuario.delete(0, END)
 		self.txtsenha.delete(0, END)
 
@@ -178,8 +222,8 @@ class Application:
 
 		user.cond_apartamento = self.txtcond_apartamento.get()
 		user.nome = self.txtnome.get()
-		user.telefone = self.txttelefone.get()
-		user.email = self.txtemail.get()
+		user.Telefone = self.txtTelefone.get()
+		user.Email = self.txtEmail.get()
 		user.usuario = self.txtusuario.get()
 		user.senha = self.txtsenha.get()
 
@@ -187,8 +231,8 @@ class Application:
 
 		self.txtcond_apartamento.delete(0, END)
 		self.txtnome.delete(0, END)
-		self.txttelefone.delete(0, END)
-		self.txtemail.delete(0, END)
+		self.txtTelefone.delete(0, END)
+		self.txtEmail.delete(0, END)
 		self.txtusuario.delete(0, END)
 		self.txtsenha.delete(0, END)
 
@@ -203,8 +247,8 @@ class Application:
 
 		self.txtcond_apartamento.delete(0, END)
 		self.txtnome.delete(0, END)
-		self.txttelefone.delete(0, END)
-		self.txtemail.delete(0, END)
+		self.txtTelefone.delete(0, END)
+		self.txtEmail.delete(0, END)
 		self.txtusuario.delete(0, END)
 		self.txtsenha.delete(0, END)
 
@@ -222,11 +266,11 @@ class Application:
 		self.txtnome.delete(0, END)
 		self.txtnome.insert(INSERT, user.nome)
 
-		self.txttelefone.delete(0, END)
-		self.txttelefone.insert(INSERT,user.telefone)
+		self.txtTelefone.delete(0, END)
+		self.txtTelefone.insert(INSERT,user.Telefone)
 
-		self.txtemail.delete(0, END)
-		self.txtemail.insert(INSERT, user.email)
+		self.txtEmail.delete(0, END)
+		self.txtEmail.insert(INSERT, user.Email)
 
 		self.txtusuario.delete(0, END)
 		self.txtusuario.insert(INSERT, user.usuario)
