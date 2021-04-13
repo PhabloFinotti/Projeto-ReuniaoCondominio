@@ -1,5 +1,6 @@
 from Condominos import Condominos
 from tkinter import *
+from tkcalendar import *
 
 class Application:
 	def __init__(self, master=None):
@@ -40,12 +41,12 @@ class Application:
 		self.container9["pady"] = 15
 		self.container9.pack()
 
-		self.titulo = Label(self.container1, text="Informe os dados :")
+		self.titulo = Label(self.container1, text="Informe os dados : ")
 		self.titulo["font"] = ("Calibri", "9", "bold")
 		self.titulo.pack ()
 
 		self.lblcond_apartamento = Label(self.container2,
-		text="Apartamento:", font=self.fonte, width=10)
+		text="Apartamento: ", font=self.fonte, width=10)
 		self.lblcond_apartamento.pack(side=LEFT)
 
 		self.txtcond_apartamento = Entry(self.container2)
@@ -58,7 +59,7 @@ class Application:
 		self.btnBuscar["command"] = self.buscarUsuario
 		self.btnBuscar.pack(side=RIGHT)
 
-		self.lblnome = Label(self.container3, text="Nome:",
+		self.lblnome = Label(self.container3, text="Nome: ",
 		font=self.fonte, width=10)
 		self.lblnome.pack(side=LEFT)
 
@@ -67,7 +68,7 @@ class Application:
 		self.txtnome["font"] = self.fonte
 		self.txtnome.pack(side=LEFT)
 
-		self.lblcpf = Label(self.container3, text="CPF:",
+		self.lblcpf = Label(self.container3, text="CPF: ",
 		font=self.fonte, width=10)
 		self.lblcpf.pack(side=LEFT)
 
@@ -75,17 +76,36 @@ class Application:
 		self.txtcpf["width"] = 25
 		self.txtcpf["font"] = self.fonte
 		self.txtcpf.pack(side=LEFT)
-		
-		self.lbltppessoa = Label(self.container4, text="Tipo Pessoa:",
+
+		self.lbltppessoa = Label(self.container4, text="Tipo Pessoa: ",
 		font=self.fonte, width=10)
 		self.lbltppessoa.pack(side=LEFT)
 
-		self.txttppessoa = OptionMenu(self.container4,'F', 'F','J')
+		self.txttppessoa = Entry(self.container4)
 		self.txttppessoa["width"] = 3
 		self.txttppessoa["font"] = self.fonte
 		self.txttppessoa.pack(side=LEFT)
 
-		self.lblemail= Label(self.container5, text="E-mail:",
+		self.lblrg = Label(self.container4, text="RG: ",
+		font=self.fonte, width=10)
+		self.lblrg.pack(side=LEFT)
+
+		self.txtrg = Entry(self.container4)
+		self.txtrg["width"] = 10
+		self.txtrg["font"] = self.fonte
+		self.txtrg.pack(side=LEFT)
+
+		self.lblnascimento= Label(self.container4, text="Data de Nascimento: ",
+		font=self.fonte, width=10)
+		self.lblnascimento.pack(side=LEFT)
+
+		self.txtnascimento = DateEntry(self.container5)
+		self.txtnascimento["width"] = 10
+		self.txtnascimento["font"] = self.fonte
+		self.txtnascimento.pack(side=LEFT)
+
+
+		self.lblemail= Label(self.container5, text="E-mail: ",
 		font=self.fonte, width=10)
 		self.lblemail.pack(side=LEFT)
 
@@ -94,7 +114,7 @@ class Application:
 		self.txtemail["font"] = self.fonte
 		self.txtemail.pack(side=LEFT)
 
-		self.lblusuario= Label(self.container6, text="Usuário:",
+		self.lblusuario= Label(self.container6, text="Usuário: ",
 		font=self.fonte, width=10)
 		self.lblusuario.pack(side=LEFT)
 
@@ -103,7 +123,7 @@ class Application:
 		self.txtusuario["font"] = self.fonte
 		self.txtusuario.pack(side=LEFT)
 
-		self.lblsenha= Label(self.container7, text="Senha:",
+		self.lblsenha= Label(self.container7, text="Senha: ",
 		font=self.fonte, width=10)
 		self.lblsenha.pack(side=LEFT)
 
