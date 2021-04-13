@@ -11,18 +11,19 @@ class Banco():
 		c = self.conexao.cursor()
 
 		c.execute("""create table if not exists condominos (
-					 cond_id integer primary key autoincrement,
-					 cond_apartamento int,
-					 cond_cpf varchar(14),
-					 cond_nome varchar(255),
-					 cond_tppessoa varchar(1),
-					 cond_rg varchar(20),
-					 cond_nascimento date,
-					 cond_email varchar(50),
-					 cond_tel_resid varchar(11),
-					 cond_tel_com varchar(11),
-					 cond_tel_cel varchar(11),
-					 cond_data_cadastro datetime,
-					 cond_adimplente bit)""")
+					 id integer primary key autoincrement ,
+					 txtApartamento int,
+					 txtCPF varchar(14),
+					 txtNome varchar(255),
+					 txtTPpessoa varchar(20),
+					 txtRG varchar(20),
+					 txtNascimento date,
+					 txtEmail varchar(50),
+					 txtTelResidencia varchar(11),
+					 txtTelComercial varchar(11),
+					 txtTelCelular varchar(11),
+					 txtAdimplente bit,
+					 cond_data_cadastro datetime)""")
+
 		self.conexao.commit()
 		c.close()

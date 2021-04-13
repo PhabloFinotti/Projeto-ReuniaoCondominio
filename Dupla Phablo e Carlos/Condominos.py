@@ -3,15 +3,19 @@ from Banco import Banco
 class Condominos(object):
 
 
-	def __init__(self, cond_apartamento = 0, nome = "", telefone = "",
-	email = "", usuario = "", senha = ""):
-	  self.info = {}
-	  self.cond_apartamento = cond_apartamento
-	  self.nome = nome
-	  self.telefone = telefone
-	  self.email = email
-	  self.usuario = usuario
-	  self.senha = senha
+	def __init__(self, txtApartamento = "", txtCPF = "", txtNome = "", txtTPpessoa = "", txtRG = "", txtNascimento = "", txtEmail = "", txtTelResidencia = "", txtTelComercial = "", txtTelCelular = "", txtAdimplente):
+
+		self.txtApartamento = txtApartamento
+		self.txtCPF = txtCPF
+		self.txtNome = txtNome
+		self.txtTPpessoa = txtTPpessoa
+		self.txtRG = txtRG
+		self.txtNascimento = txtNascimento
+		self.txtEmail = txtEmail
+		self.txtTelResidencia = txtTelResidencia
+		self.txtTelComercial = txtTelComercial
+		self.txtTelCelular = txtTelCelular
+		self.txtAdimplente = txtAdimplente
 
 
 	def insertUser(self):
@@ -37,7 +41,7 @@ class Condominos(object):
 
 		  c = banco.conexao.cursor()
 
-		  c.execute("update condominos set nome = '" + self.nome + "', telefone = '" + self.telefone + "', email = '" + self.email + "', usuario = '" + self.usuario + "', senha = '" + self.senha +  "' where cond_apartamento = " + self.cond_apartamento + " ")
+		  c.execute("update condominos set nome = '" + self.nome + "', telefone = '" + self.telefone + "', email = '" + self.email + "', usuario = '" + self.usuario + "', senha = '" + self.senha +  "' where txtApartamento = " + self.txtApartamento + " ")
 
 		  banco.conexao.commit()
 		  c.close()
@@ -53,7 +57,7 @@ class Condominos(object):
 
 		  c = banco.conexao.cursor()
 
-		  c.execute("delete from condominos where cond_apartamento = " + self.cond_apartamento + " ")
+		  c.execute("delete from condominos where txtApartamento = " + self.txtApartamento + " ")
 
 		  banco.conexao.commit()
 		  c.close()
@@ -62,21 +66,26 @@ class Condominos(object):
 	  except:
 		  return "Ocorreu um erro na exclusão do usuário"
 
-	def selectCond(self, cond_apartamento):
+	def selectCond(self, txtApartamento):
 	  banco = Banco()
 	  try:
 
 		  c = banco.conexao.cursor()
 
-		  c.execute("select * from condominos where cond_apartamento = " + cond_apartamento + "  ")
+		  c.execute("select * from condominos where txtApartamento = " + txtApartamento + "  ")
 
 		  for linha in c:
-			  self.cond_apartamento = linha[0]
-			  self.nome = linha[1]
-			  self.telefone = linha[2]
-			  self.email = linha[3]
-			  self.usuario = linha[4]
-			  self.senha = linha[5]
+			self.txtApartamento = linha[0]
+			self.txtCPF = linha[1]
+			self.txtNome = linha[2]
+			self.txtTPpessoa = linha[3]
+			self.txtRG = linha[4]
+			self.txtNascimento = linha[5]
+			self.txtEmail = linha[6]
+			self.txtTelResidencia = linha[7]
+			self.txtTelComercial = linha[8]
+			self.txtTelCelular = linha[9]
+			self.txtAdimplente = linha[10]
 
 		  c.close()
 

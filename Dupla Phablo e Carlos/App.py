@@ -45,14 +45,14 @@ class Application:
 		self.titulo["font"] = ("Calibri", "9", "bold")
 		self.titulo.pack ()
 
-		self.lblcond_apartamento = Label(self.container2,
+		self.txtApartamento = Label(self.container2,
 		text="Apartamento: ", font=self.fonte, width=15)
-		self.lblcond_apartamento.pack(side=LEFT)
+		self.txtApartamento.pack(side=LEFT)
 
-		self.txtcond_apartamento = Entry(self.container2)
-		self.txtcond_apartamento["width"] = 10
-		self.txtcond_apartamento["font"] = self.fonte
-		self.txtcond_apartamento.pack(side=LEFT)
+		self.txtApartamento = Entry(self.container2)
+		self.txtApartamento["width"] = 10
+		self.txtApartamento["font"] = self.fonte
+		self.txtApartamento.pack(side=LEFT)
 
 
 		# Botão de Busca
@@ -63,47 +63,47 @@ class Application:
 
 
 		# Nome usuário
-		self.lblnome = Label(self.container3, text="Nome: ",
+		self.lblNome = Label(self.container3, text="Nome: ",
 		font=self.fonte, width=10)
-		self.lblnome.pack(side=LEFT)
+		self.lblNome.pack(side=LEFT)
 
-		self.txtnome = Entry(self.container3)
-		self.txtnome["width"] = 25
-		self.txtnome["font"] = self.fonte
-		self.txtnome.pack(side=LEFT)
+		self.txtNome = Entry(self.container3)
+		self.txtNome["width"] = 25
+		self.txtNome["font"] = self.fonte
+		self.txtNome.pack(side=LEFT)
 
 
 		# CPF Usuário
-		self.lblcpf = Label(self.container3, text="CPF: ",
+		self.lblCPF = Label(self.container3, text="CPF: ",
 		font=self.fonte, width=10)
-		self.lblcpf.pack(side=LEFT)
+		self.lblCPF.pack(side=LEFT)
 
-		self.txtcpf = Entry(self.container3)
-		self.txtcpf["width"] = 25
-		self.txtcpf["font"] = self.fonte
-		self.txtcpf.pack(side=LEFT)
+		self.txtCPF = Entry(self.container3)
+		self.txtCPF["width"] = 25
+		self.txtCPF["font"] = self.fonte
+		self.txtCPF.pack(side=LEFT)
 
 
 		# Tipo de pessoa (Física ou Jurídica)
-		self.lbltppessoa = Label(self.container4, text="Tipo Pessoa: ",
+		self.lblTPpessoa = Label(self.container4, text="Tipo Pessoa: ",
 		font=self.fonte, width=13)
-		self.lbltppessoa.pack(side=LEFT)
+		self.lblTPpessoa.pack(side=LEFT)
 
-		self.txttppessoa = Entry(self.container4)
-		self.txttppessoa["width"] = 3
-		self.txttppessoa["font"] = self.fonte
-		self.txttppessoa.pack(side=LEFT)
+		self.txtTPpessoa = Entry(self.container4)
+		self.txtTPpessoa["width"] = 3
+		self.txtTPpessoa["font"] = self.fonte
+		self.txtTPpessoa.pack(side=LEFT)
 
 
 		# RG do Usuário
-		self.lblrg = Label(self.container4, text="RG: ",
+		self.lblRG = Label(self.container4, text="RG: ",
 		font=self.fonte, width=7)
-		self.lblrg.pack(side=LEFT)
+		self.lblRG.pack(side=LEFT)
 
-		self.txtrg = Entry(self.container4)
-		self.txtrg["width"] = 10
-		self.txtrg["font"] = self.fonte
-		self.txtrg.pack(side=LEFT)
+		self.txtRG = Entry(self.container4)
+		self.txtRG["width"] = 10
+		self.txtRG["font"] = self.fonte
+		self.txtRG.pack(side=LEFT)
 
 
 		# Data de Nascimento
@@ -193,7 +193,7 @@ class Application:
 		self.btnExcluir.pack(side=LEFT)
 
 
-		# MENSAGEM????
+		# MENSAGEM, pega o return da função na Class Condomino
 		self.lblmsg = Label(self.container9, text="")
 		self.lblmsg["font"] = ("Verdana", "9", "italic")
 		self.lblmsg.pack()
@@ -202,95 +202,124 @@ class Application:
 	def inserirUsuario(self):
 		user = Condominos()
 
-		user.cond_apartamento = self.txtcond_apartamento.get()
-		user.cond_cpf = self.txtcpf.get()
-		user.cond_nome = self.txtnome.get()
-		user.cond_tppessoa = self.txttppessoa.get()
-		user.cond_rg = self.txtrg.get()
-		user.cond_nascimento = self.txtNascimento.get()
-		user.cond_email = self.txtEmail.get()
-		user.cond_tel_resid = self.txtTelResidencia.get()
-		user.cond_tel_com = self.txtTelComercial.get()
-		user.cond_tel_cel = self.txtTelCelular.get()
-		user.cond_adimplente = self.txtAdimplente.get()
+		user.txtApartamento = self.txtApartamento.get()
+		user.txtCPF = self.txtCPF.get()
+		user.txtNome = self.txtNome.get()
+		user.txtTPpessoa = self.txtTPpessoa.get()
+		user.txtRG = self.txtRG.get()
+		user.txtNascimento = self.txtNascimento.get()
+		user.txtEmail = self.txtEmail.get()
+		user.txtTelResidencia = self.txtTelResidencia.get()
+		user.txtTelComercial = self.txtTelComercial.get()
+		user.txtTelCelular = self.txtTelCelular.get()
+		user.txtAdimplente = self.txtAdimplente.get()
 
 		self.lblmsg["text"] = user.insertUser()
 
-		self.txtcond_apartamento.delete(0, END)
-		self.txtnome.delete(0, END)
-		self.txtTelefone.delete(0, END)
+		self.txtApartamento.delete(0, END)
+		self.txtCPF.delete(0, END)
+		self.txtNome.delete(0, END)
+		self.txtTPpessoa.delete(0, END)
+		self.txtRG.delete(0, END)
+		self.txtNascimento.delete(0, END)
 		self.txtEmail.delete(0, END)
-		self.txtusuario.delete(0, END)
-		self.txtsenha.delete(0, END)
-
+		self.txtTelResidencia.delete(0, END)
+		self.txtTelComercial.delete(0, END)
+		self.txtTelCelular.delete(0, END)
+		self.txtAdimplente.delete(0, END)
 
 
 	def alterarUsuario(self):
-		user = condominos()
+		user = Condominos()
 
-		user.cond_apartamento = self.txtcond_apartamento.get()
-		user.cond_cpf = self.txtcpf.get()
-		user.cond_nome = self.txtnome.get()
-		user.cond_tppessoa = self.txttppessoa.get()
-		user.cond_rg = self.txtrg.get()
-		user.cond_nascimento = self.txtNascimento.get()
-		user.cond_email = self.txtEmail.get()
-		user.cond_tel_resid = self.txtTelResidencia.get()
-		user.cond_tel_com = self.txtTelComercial.get()
-		user.cond_tel_cel = self.txtTelCelular.get()
-		user.cond_adimplente = self.txtAdimplente.get()
+		user.txtApartamento = self.txtApartamento.get()
+		user.txtCPF = self.txtCPF.get()
+		user.txtNome = self.txtNome.get()
+		user.txtTPpessoa = self.txtTPpessoa.get()
+		user.txtRG = self.txtRG.get()
+		user.txtNascimento = self.txtNascimento.get()
+		user.txtEmail = self.txtEmail.get()
+		user.txtTelResidencia = self.txtTelResidencia.get()
+		user.txtTelComercial = self.txtTelComercial.get()
+		user.txtTelCelular = self.txtTelCelular.get()
+		user.txtAdimplente = self.txtAdimplente.get()
 
 		self.lblmsg["text"] = user.updateUser()
 
-		self.txtcond_apartamento.delete(0, END)
-		self.txtnome.delete(0, END)
-		self.txtTelefone.delete(0, END)
+		self.txtApartamento.delete(0, END)
+		self.txtCPF.delete(0, END)
+		self.txtNome.delete(0, END)
+		self.txtTPpessoa.delete(0, END)
+		self.txtRG.delete(0, END)
+		self.txtNascimento.delete(0, END)
 		self.txtEmail.delete(0, END)
-		self.txtusuario.delete(0, END)
-		self.txtsenha.delete(0, END)
+		self.txtTelResidencia.delete(0, END)
+		self.txtTelComercial.delete(0, END)
+		self.txtTelCelular.delete(0, END)
+		self.txtAdimplente.delete(0, END)
 
 
 
 	def excluirUsuario(self):
-		user = condominos()
+		user = Condominos()
 
-		user.cond_apartamento = self.txtcond_apartamento.get()
+		user.txtApartamento = self.txtApartamento.get()
 
 		self.lblmsg["text"] = user.deleteUser()
 
-		self.txtcond_apartamento.delete(0, END)
-		self.txtnome.delete(0, END)
-		self.txtTelefone.delete(0, END)
+		self.txtApartamento.delete(0, END)
+		self.txtCPF.delete(0, END)
+		self.txtNome.delete(0, END)
+		self.txtTPpessoa.delete(0, END)
+		self.txtRG.delete(0, END)
+		self.txtNascimento.delete(0, END)
 		self.txtEmail.delete(0, END)
-		self.txtusuario.delete(0, END)
-		self.txtsenha.delete(0, END)
+		self.txtTelResidencia.delete(0, END)
+		self.txtTelComercial.delete(0, END)
+		self.txtTelCelular.delete(0, END)
+		self.txtAdimplente.delete(0, END)
 
 
 	def buscarUsuario(self):
-		user = condominos()
+		user = Condominos()
 
-		cond_apartamento = self.txtcond_apartamento.get()
+		user.txtApartamento = self.txtApartamento.get()
 
-		self.lblmsg["text"] = user.selectCond(cond_apartamento)
+		self.lblmsg["text"] = user.selectCond(apartamento)
 
-		self.txtcond_apartamento.delete(0, END)
-		self.txtcond_apartamento.insert(INSERT, user.cond_apartamento)
 
-		self.txtnome.delete(0, END)
-		self.txtnome.insert(INSERT, user.nome)
+		self.txtApartamento.delete(0, END)
+		self.txtApartamento.insert(INSERT, user.apartamento)
 
-		self.txtTelefone.delete(0, END)
-		self.txtTelefone.insert(INSERT,user.Telefone)
+		self.txtCPF.delete(0, END)
+		self.txtCPF.insert(INSERT, user.txtCPF)
+
+		self.txtNome.delete(0, END)
+		self.txtNome.insert(INSERT, user.txtNome)
+
+		self.txtTPpessoa.delete(0, END)
+		self.txtTPpessoa.insert(INSERT, user.txtTPpessoa)
+
+		self.txtRG.delete(0, END)
+		self.txtRG.insert(INSERT, user.txtRG)
+
+		self.txtNascimento.delete(0, END)
+		self.txtNascimento.insert(INSERT, user.txtNascimento)
 
 		self.txtEmail.delete(0, END)
-		self.txtEmail.insert(INSERT, user.Email)
+		self.txtEmail.insert(INSERT, user.txtEmail)
 
-		self.txtusuario.delete(0, END)
-		self.txtusuario.insert(INSERT, user.usuario)
+		self.txtTelResidencia.delete(0, END)
+		self.txtTelResidencia.insert(INSERT, user.txtTelResidencia)
 
-		self.txtsenha.delete(0, END)
-		self.txtsenha.insert(INSERT,user.senha)
+		self.txtTelComercial.delete(0, END)
+		self.txtTelComercial.insert(INSERT, user.txtTelComercial)
 
+		self.txtTelCelular.delete(0, END)
+		self.txtTelCelular.insert(INSERT, user.txtTelCelular)
+
+		self.txtAdimplente.delete(0, END)
+		self.txtAdimplente.insert(INSERT, user.txtAdimplente)
 
 
 root = Tk()
