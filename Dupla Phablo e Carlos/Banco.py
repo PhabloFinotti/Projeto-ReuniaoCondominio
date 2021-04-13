@@ -12,17 +12,17 @@ class Banco():
 
 		c.execute("""create table if not exists condominos (
 					 id integer primary key autoincrement ,
-					 txtApartamento int,
-					 txtCPF varchar(14),
-					 txtNome varchar(255),
-					 txtTPpessoa varchar(20),
-					 txtRG varchar(20),
-					 txtNascimento date,
-					 txtEmail varchar(50),
-					 txtTelResidencia varchar(11),
-					 txtTelComercial varchar(11),
-					 txtTelCelular varchar(11),
-					 txtAdimplente bit,
+					 cond_apartamento int,
+					 cond_cpf varchar(14),
+					 cond_nome varchar(255),
+					 cond_tppessoa varchar(20),
+					 cond_rg varchar(20),
+					 cond_nascimento date,
+					 cond_email varchar(50),
+					 cond_telresidencial varchar(11),
+					 cond_telcomercial varchar(11),
+					 cond_telcelular varchar(11),
+					 cont_adimplente bit,
 					 cond_data_cadastro datetime)""")
 
 		self.conexao.commit()
