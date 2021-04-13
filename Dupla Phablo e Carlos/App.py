@@ -192,19 +192,27 @@ class Application:
 		self.btnExcluir["command"] = self.excluirUsuario
 		self.btnExcluir.pack(side=LEFT)
 
+
+		# MENSAGEM????
 		self.lblmsg = Label(self.container9, text="")
 		self.lblmsg["font"] = ("Verdana", "9", "italic")
 		self.lblmsg.pack()
 
 
 	def inserirUsuario(self):
-		user = condominos()
+		user = Condominos()
 
-		user.nome = self.txtnome.get()
-		user.telefone = self.txtTelefone.get()
-		user.email = self.txtEmail.get()
-		user.usuario = self.txtusuario.get()
-		user.senha = self.txtsenha.get()
+		user.cond_apartamento = self.txtcond_apartamento.get()
+		user.cond_cpf = self.txtcpf.get()
+		user.cond_nome = self.txtnome.get()
+		user.cond_tppessoa = self.txttppessoa.get()
+		user.cond_rg = self.txtrg.get()
+		user.cond_nascimento = self.txtNascimento.get()
+		user.cond_email = self.txtEmail.get()
+		user.cond_tel_resid = self.txtTelResidencia.get()
+		user.cond_tel_com = self.txtTelComercial.get()
+		user.cond_tel_cel = self.txtTelCelular.get()
+		user.cond_adimplente = self.txtAdimplente.get()
 
 		self.lblmsg["text"] = user.insertUser()
 
@@ -221,11 +229,16 @@ class Application:
 		user = condominos()
 
 		user.cond_apartamento = self.txtcond_apartamento.get()
-		user.nome = self.txtnome.get()
-		user.Telefone = self.txtTelefone.get()
-		user.Email = self.txtEmail.get()
-		user.usuario = self.txtusuario.get()
-		user.senha = self.txtsenha.get()
+		user.cond_cpf = self.txtcpf.get()
+		user.cond_nome = self.txtnome.get()
+		user.cond_tppessoa = self.txttppessoa.get()
+		user.cond_rg = self.txtrg.get()
+		user.cond_nascimento = self.txtNascimento.get()
+		user.cond_email = self.txtEmail.get()
+		user.cond_tel_resid = self.txtTelResidencia.get()
+		user.cond_tel_com = self.txtTelComercial.get()
+		user.cond_tel_cel = self.txtTelCelular.get()
+		user.cond_adimplente = self.txtAdimplente.get()
 
 		self.lblmsg["text"] = user.updateUser()
 
