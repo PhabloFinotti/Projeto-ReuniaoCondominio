@@ -1,94 +1,103 @@
 from Banco import Banco
+import sqlite3
 
 class Condominos(object):
 
 
-	def __init__(self, txtApartamento = "", txtCPF = "", txtNome = "", txtTPpessoa = "", txtRG = "", txtNascimento = "", txtEmail = "", txtTelResidencia = "", txtTelComercial = "", txtTelCelular = "", txtAdimplente):
+	def __init__(self, txtApartamento = "", txtCPF = "", txtNome = "", txtTPpessoa = "", txtRG = "", txtNascimento = "", txtEmail = "", txtTelResidencia = "", txtTelComercial = "", txtTelCelular = "", txtAdimplente = bool):
+	# def __init__(self, txtApartamento = ""):
 
-		self.txtApartamento = txtApartamento
-		self.txtCPF = txtCPF
-		self.txtNome = txtNome
-		self.txtTPpessoa = txtTPpessoa
-		self.txtRG = txtRG
-		self.txtNascimento = txtNascimento
-		self.txtEmail = txtEmail
-		self.txtTelResidencia = txtTelResidencia
-		self.txtTelComercial = txtTelComercial
-		self.txtTelCelular = txtTelCelular
-		self.txtAdimplente = txtAdimplente
+		self.cond_apartamento = txtApartamento
+
+		self.cond_cpf = txtCPF
+		self.cond_nome = txtNome
+		self.cond_tppessoa = txtTPpessoa
+		self.cond_rg = txtRG
+		self.cond_nascimento = txtNascimento
+		self.cond_email = txtEmail
+		self.cond_telresidencial = txtTelResidencia
+		self.cond_telcomercial = txtTelComercial
+		self.cond_telcelular = txtTelCelular
+		self.cont_adimplente = txtAdimplente
+
+		
 
 
 	def insertUser(self):
 
-	  banco = Banco()
-	  try:
+		banco = Banco()
+		try:
 
-		  c = banco.conexao.cursor()
+			c = banco.conexao.cursor()
 
-		  c.execute("insert into condominos (nome, telefone, email,usuario, senha) values ('" + self.nome + "', '" + self.telefone + "', '" + self.email + "', '" + self.usuario + "', '" + self.senha + "' )")
+			c.execute("insert into condominos (cond_apartamento, cond_cpf, cond_nome, cond_tppessoa, cond_rg, cond_nascimento, cond_email, cond_telresidencial, cond_telcomercial, cond_telcelular, cont_adimplente) values ('" + self.cond_apartamento + "', '" + self.cond_cpf + "', '" + self.cond_nome + "', '" + self.cond_tppessoa + "', '" + self.cond_rg + "', '" + self.cond_nascimento + "', '" + self.cond_email + "', '" + self.cond_telresidencial + "', '" + self.cond_telcomercial + "', '" + self.cond_telcelular + "', '" + str(self.cont_adimplente) + "' )")
 
-		  banco.conexao.commit()
-		  c.close()
 
-		  return "Usuário cadastrado com sucesso!"
-	  except:
-		  return "Ocorreu um erro na inserção do usuário"
+			# c.execute("insert into condominos (cond_apartamento) values ('" + self.cond_apartamento + "' )")
+
+
+			banco.conexao.commit()
+			c.close()
+
+			return "Usuário cadastrado com sucesso!"
+		except sqlite3.Error as erro:
+			return "Ocorreu um erro na inserção do usuário", erro
 
 	def updateUser(self):
 
-	  banco = Banco()
-	  try:
+		banco = Banco()
+		try:
 
-		  c = banco.conexao.cursor()
+			c = banco.conexao.cursor()
 
-		  c.execute("update condominos set nome = '" + self.nome + "', telefone = '" + self.telefone + "', email = '" + self.email + "', usuario = '" + self.usuario + "', senha = '" + self.senha +  "' where txtApartamento = " + self.txtApartamento + " ")
+			c.execute("update condominos set cond_apartamento = '" + self.cond_apartamento + "', cond_cpf = '" + self.cond_cpf + "', cond_nome = '" + self.cond_nome + "', cond_tppessoa = '" + self.cond_tppessoa + "', cond_rg = '" + self.cond_rg + "', cond_nascimento = '" + self.cond_nascimento + "', cond_email = '" + self.cond_email + "', cond_telresidencial = '" + self.cond_telresidencial + "', cond_telcomercial = '" + self.cond_telcomercial + "', cond_telcelular = '" + self.cond_telcelular + "', cont_adimplente = '" + self.cont_adimplente + " ")
 
-		  banco.conexao.commit()
-		  c.close()
+			banco.conexao.commit()
+			c.close()
 
-		  return "Usuário atualizado com sucesso!"
-	  except:
-		  return "Ocorreu um erro na alteração do usuário"
+			return "Usuário atualizado com sucesso!"
+		except:
+			return "Ocorreu um erro na alteração do usuário"
 
 	def deleteUser(self):
 
-	  banco = Banco()
-	  try:
+		banco = Banco()
+		try:
 
-		  c = banco.conexao.cursor()
+			c = banco.conexao.cursor()
 
-		  c.execute("delete from condominos where txtApartamento = " + self.txtApartamento + " ")
+			c.execute("delete from condominos where cond_apartamento = '" + self.cond_apartamento + " ")
 
-		  banco.conexao.commit()
-		  c.close()
+			banco.conexao.commit()
+			c.close()
 
-		  return "Usuário excluído com sucesso!"
-	  except:
-		  return "Ocorreu um erro na exclusão do usuário"
+			return "Usuário excluído com sucesso!"
+		except:
+			return "Ocorreu um erro na exclusão do usuário"
 
 	def selectCond(self, txtApartamento):
-	  banco = Banco()
-	  try:
+		banco = Banco()
+		try:
 
-		  c = banco.conexao.cursor()
+			c = banco.conexao.cursor()
 
-		  c.execute("select * from condominos where txtApartamento = " + txtApartamento + "  ")
+			c.execute("select * from condominos where cond_apartamento = '" + self.cond_apartamento + "  ")
 
-		  for linha in c:
-			self.txtApartamento = linha[0]
-			self.txtCPF = linha[1]
-			self.txtNome = linha[2]
-			self.txtTPpessoa = linha[3]
-			self.txtRG = linha[4]
-			self.txtNascimento = linha[5]
-			self.txtEmail = linha[6]
-			self.txtTelResidencia = linha[7]
-			self.txtTelComercial = linha[8]
-			self.txtTelCelular = linha[9]
-			self.txtAdimplente = linha[10]
+			for linha in c:
+				self.txtApartamento = linha[0]
+				self.txtCPF = linha[1]
+				self.txtNome = linha[2]
+				self.txtTPpessoa = linha[3]
+				self.txtRG = linha[4]
+				self.txtNascimento = linha[5]
+				self.txtEmail = linha[6]
+				self.txtTelResidencia = linha[7]
+				self.txtTelComercial = linha[8]
+				self.txtTelCelular = linha[9]
+				self.txtAdimplente = linha[10]
 
-		  c.close()
+			c.close()
 
-		  return "Busca feita com sucesso!"
-	  except:
-		  return "Ocorreu um erro na busca do usuário"
+			return "Busca feita com sucesso!"
+		except:
+			return "Ocorreu um erro na busca do usuário"

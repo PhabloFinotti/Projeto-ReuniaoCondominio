@@ -40,6 +40,9 @@ class Application:
 		self.container9 = Frame(master)
 		self.container9["pady"] = 15
 		self.container9.pack()
+		self.container10 = Frame(master)
+		self.container10["pady"] = 15
+		self.container10.pack()
 
 		self.titulo = Label(self.container1, text="Informe os dados : ")
 		self.titulo["font"] = ("Calibri", "9", "bold")
@@ -168,7 +171,6 @@ class Application:
 
 		self.txtTelCelular = Entry(self.container8)
 		self.txtTelCelular["width"] = 25
-		self.txtTelCelular["show"] = "*"
 		self.txtTelCelular["font"] = self.fonte
 		self.txtTelCelular.pack(side=LEFT)
 
@@ -194,7 +196,7 @@ class Application:
 
 
 		# MENSAGEM, pega o return da função na Class Condomino
-		self.lblmsg = Label(self.container9, text="")
+		self.lblmsg = Label(self.container10, text="")
 		self.lblmsg["font"] = ("Verdana", "9", "italic")
 		self.lblmsg.pack()
 
@@ -202,17 +204,17 @@ class Application:
 	def inserirUsuario(self):
 		user = Condominos()
 
-		user.txtApartamento = self.txtApartamento.get()
-		user.txtCPF = self.txtCPF.get()
-		user.txtNome = self.txtNome.get()
-		user.txtTPpessoa = self.txtTPpessoa.get()
-		user.txtRG = self.txtRG.get()
-		user.txtNascimento = self.txtNascimento.get()
-		user.txtEmail = self.txtEmail.get()
-		user.txtTelResidencia = self.txtTelResidencia.get()
-		user.txtTelComercial = self.txtTelComercial.get()
-		user.txtTelCelular = self.txtTelCelular.get()
-		user.txtAdimplente = self.txtAdimplente.get()
+		user.cond_apartamento = self.txtApartamento.get()
+		user.cond_cpf = self.txtCPF.get()
+		user.cond_nome = self.txtNome.get()
+		user.cond_tppessoa = self.txtTPpessoa.get()
+		user.cond_rg = self.txtRG.get()
+		user.cond_nascimento = self.txtNascimento.get()
+		user.cond_email = self.txtEmail.get()
+		user.cond_telresidencial = self.txtTelResidencia.get()
+		user.cond_telcomercial = self.txtTelComercial.get()
+		user.cond_telcelular = self.txtTelCelular.get()
+		user.cont_adimplente = self.txtAdimplente = BooleanVar()
 
 		self.lblmsg["text"] = user.insertUser()
 
@@ -226,7 +228,7 @@ class Application:
 		self.txtTelResidencia.delete(0, END)
 		self.txtTelComercial.delete(0, END)
 		self.txtTelCelular.delete(0, END)
-		self.txtAdimplente.delete(0, END)
+		self.txtAdimplente = BooleanVar(False)
 
 
 	def alterarUsuario(self):
@@ -242,7 +244,7 @@ class Application:
 		user.txtTelResidencia = self.txtTelResidencia.get()
 		user.txtTelComercial = self.txtTelComercial.get()
 		user.txtTelCelular = self.txtTelCelular.get()
-		user.txtAdimplente = self.txtAdimplente.get()
+		user.txtAdimplente = self.txtAdimplente = BooleanVar()
 
 		self.lblmsg["text"] = user.updateUser()
 
@@ -285,11 +287,11 @@ class Application:
 
 		user.txtApartamento = self.txtApartamento.get()
 
-		self.lblmsg["text"] = user.selectCond(apartamento)
+		self.lblmsg["text"] = user.selectCond(user.txtApartamento)
 
 
 		self.txtApartamento.delete(0, END)
-		self.txtApartamento.insert(INSERT, user.apartamento)
+		self.txtApartamento.insert(INSERT, user.txtApartamento)
 
 		self.txtCPF.delete(0, END)
 		self.txtCPF.insert(INSERT, user.txtCPF)
