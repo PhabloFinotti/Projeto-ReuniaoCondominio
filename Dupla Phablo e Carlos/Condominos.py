@@ -1,14 +1,13 @@
 from Banco import Banco
 import sqlite3
+from datetime import datetime
 
 class Condominos(object):
 
 
-	def __init__(self, txtApartamento = "", txtCPF = "", txtNome = "", txtTPpessoa = "", txtRG = "", txtNascimento = "", txtEmail = "", txtTelResidencia = "", txtTelComercial = "", txtTelCelular = "", txtAdimplente = bool):
-	# def __init__(self, txtApartamento = ""):
+	def __init__(self, txtApartamento = "", txtCPF = "", txtNome = "", txtTPpessoa = "", txtRG = "", txtNascimento = "", txtEmail = "", txtTelResidencia = "", txtTelComercial = "", txtTelCelular = "", resTxtAdimplente = bool):
 
 		self.cond_apartamento = txtApartamento
-
 		self.cond_cpf = txtCPF
 		self.cond_nome = txtNome
 		self.cond_tppessoa = txtTPpessoa
@@ -18,23 +17,22 @@ class Condominos(object):
 		self.cond_telresidencial = txtTelResidencia
 		self.cond_telcomercial = txtTelComercial
 		self.cond_telcelular = txtTelCelular
-		self.cont_adimplente = txtAdimplente
 
-		
+		self.cond_adimplente = resTxtAdimplente
 
 
 	def insertUser(self):
 
 		banco = Banco()
+
+		##Data do Cadastro
+		time = datetime.now().strftime("%B %d, %Y %I:%M%p")
+
 		try:
 
 			c = banco.conexao.cursor()
 
-			c.execute("insert into condominos (cond_apartamento, cond_cpf, cond_nome, cond_tppessoa, cond_rg, cond_nascimento, cond_email, cond_telresidencial, cond_telcomercial, cond_telcelular, cont_adimplente) values ('" + self.cond_apartamento + "', '" + self.cond_cpf + "', '" + self.cond_nome + "', '" + self.cond_tppessoa + "', '" + self.cond_rg + "', '" + self.cond_nascimento + "', '" + self.cond_email + "', '" + self.cond_telresidencial + "', '" + self.cond_telcomercial + "', '" + self.cond_telcelular + "', '" + str(self.cont_adimplente) + "' )")
-
-
-			# c.execute("insert into condominos (cond_apartamento) values ('" + self.cond_apartamento + "' )")
-
+			c.execute("insert into condominos (cond_apartamento, cond_cpf, cond_nome, cond_tppessoa, cond_rg, cond_nascimento, cond_email, cond_telresidencial, cond_telcomercial, cond_telcelular, cond_adimplente, cond_data_cadastro) values ('" + self.cond_apartamento + "', '" + self.cond_cpf + "', '" + self.cond_nome + "', '" + self.cond_tppessoa + "', '" + self.cond_rg + "', '" + self.cond_nascimento + "', '" + self.cond_email + "', '" + self.cond_telresidencial + "', '" + self.cond_telcomercial + "', '" + self.cond_telcelular + "', '" + str(self.cond_adimplente) + "', '" + str(time) + "' )")
 
 			banco.conexao.commit()
 			c.close()

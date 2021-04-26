@@ -22,7 +22,7 @@ class Banco():
 					 cond_telresidencial varchar(11),
 					 cond_telcomercial varchar(11),
 					 cond_telcelular varchar(11),
-					 cont_adimplente bit,
+					 cond_adimplente bit,
 					 cond_data_cadastro datetime)""")
 
 		self.conexao.commit()

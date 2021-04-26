@@ -121,7 +121,8 @@ class Application:
 
 
 		# Usuário é Adimplente
-		self.txtAdimplente = Checkbutton(self.container5, text='Adimplente', onvalue=1, offvalue=0)
+		self.resTxtAdimplente = IntVar()
+		self.txtAdimplente = Checkbutton(self.container5, text='Adimplente', variable = self.resTxtAdimplente, onvalue=1, offvalue=0)
 		self.txtAdimplente["width"] = 10
 		self.txtAdimplente["font"] = self.fonte
 		self.txtAdimplente.pack(side=LEFT)
@@ -214,7 +215,7 @@ class Application:
 		user.cond_telresidencial = self.txtTelResidencia.get()
 		user.cond_telcomercial = self.txtTelComercial.get()
 		user.cond_telcelular = self.txtTelCelular.get()
-		user.cont_adimplente = self.txtAdimplente = BooleanVar()
+		user.cond_adimplente = self.resTxtAdimplente.get()
 
 		self.lblmsg["text"] = user.insertUser()
 
