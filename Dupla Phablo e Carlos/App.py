@@ -267,7 +267,7 @@ class Application:
 	def excluirUsuario(self):
 		user = Condominos()
 
-		user.txtApartamento = self.txtApartamento.get()
+		user.cond_apartamento = self.txtApartamento.get()
 
 		self.lblmsg["text"] = user.deleteUser()
 		

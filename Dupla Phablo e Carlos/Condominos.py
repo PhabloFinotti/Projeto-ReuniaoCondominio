@@ -50,7 +50,7 @@ class Condominos(object):
 
 
 			# RETIREI A PARTE QUE ATUALIZA A SEÇÃO "ADIMPLENTE", DÁ ERRO POR SER STR, PRECISA SER REVISADO!
-			
+
 			# c.execute("update condominos set cond_apartamento = '" + self.cond_apartamento + "', cond_cpf = '" + self.cond_cpf + "', cond_nome = '" + self.cond_nome + "', cond_tppessoa = '" + self.cond_tppessoa + "', cond_rg = '" + self.cond_rg + "', cond_nascimento = '" + self.cond_nascimento + "', cond_email = '" + self.cond_email + "', cond_telresidencial = '" + self.cond_telresidencial + "', cond_telcomercial = '" + self.cond_telcomercial + "', cond_telcelular = '" + self.cond_telcelular + "', cont_adimplente = '" + str(self.cond_adimplente) + " where cond_apartamento = '" + self.cond_apartamento + "'")
 			c.execute("update condominos set cond_apartamento = '" + self.cond_apartamento + "', cond_cpf = '" + self.cond_cpf + "', cond_nome = '" + self.cond_nome + "', cond_tppessoa = '" + self.cond_tppessoa + "', cond_rg = '" + self.cond_rg + "', cond_nascimento = '" + self.cond_nascimento + "', cond_email = '" + self.cond_email + "', cond_telresidencial = '" + self.cond_telresidencial + "', cond_telcomercial = '" + self.cond_telcomercial + "', cond_telcelular = '" + self.cond_telcelular + "' where cond_apartamento = '" + self.cond_apartamento + "'")
 			# c.execute("update condominos set cond_nome = '" + self.cond_nome + "' where cond_apartamento = '" + self.cond_apartamento + "'")			
@@ -69,14 +69,14 @@ class Condominos(object):
 
 			c = banco.conexao.cursor()
 
-			c.execute("delete from condominos where cond_apartamento = '" + self.cond_apartamento + " ")
+			c.execute("delete from condominos where cond_apartamento = '" + self.cond_apartamento + "'")
 
 			banco.conexao.commit()
 			c.close()
 
 			return "Usuário excluído com sucesso!"
-		except:
-			return "Ocorreu um erro na exclusão do usuário"
+		except sqlite3.Error as erro:
+			return "Ocorreu um erro na exclusão do usuário", erro
 
 
 
@@ -91,7 +91,7 @@ class Condominos(object):
 			c.execute("select * from condominos where cond_apartamento = '" + self.cond_apartamento + "'")
 
 			# registros = c.fetchall()
-			# return registros
+			
 
 			for linha in c:
 				self.cond_apartamento = linha[1]
