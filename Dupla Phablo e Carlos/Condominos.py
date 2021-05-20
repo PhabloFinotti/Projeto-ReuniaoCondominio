@@ -18,7 +18,7 @@ class Condominos(object):
 		self.cond_telcomercial = txtTelComercial
 		self.cond_telcelular = txtTelCelular
 
-		self.cond_adimplente = resTxtAdimplente
+		# self.cond_adimplente = resTxtAdimplente
 
 
 	def insertUser(self):
@@ -73,29 +73,36 @@ class Condominos(object):
 		except:
 			return "Ocorreu um erro na exclusão do usuário"
 
-	def selectCond(self, txtApartamento):
+
+
+	#Busca no banco de dados
+	def selectCond(self, cond_apartamento = ""):
 		banco = Banco()
+ 
 		try:
 
 			c = banco.conexao.cursor()
 
-			c.execute("select * from condominos where cond_apartamento = '" + self.cond_apartamento + "  ")
+			c.execute("select * from condominos where cond_apartamento = '" + self.cond_apartamento + "'")
+
+			# registros = c.fetchall()
+			# return registros
 
 			for linha in c:
-				self.txtApartamento = linha[0]
-				self.txtCPF = linha[1]
-				self.txtNome = linha[2]
-				self.txtTPpessoa = linha[3]
-				self.txtRG = linha[4]
-				self.txtNascimento = linha[5]
-				self.txtEmail = linha[6]
-				self.txtTelResidencia = linha[7]
-				self.txtTelComercial = linha[8]
-				self.txtTelCelular = linha[9]
-				self.txtAdimplente = linha[10]
+				self.cond_apartamento = linha[1]
+				self.cond_cpf = linha[2]
+				self.cond_nome = linha[3]
+				self.cond_tppessoa = linha[4]
+				self.cond_rg = linha[5]
+				self.cond_nascimento = linha[6]
+				self.cond_email = linha[7]
+				self.cond_telresidencial = linha[8]
+				self.cond_telcomercial = linha[9]
+				self.cond_telcelular = linha[10]
+				self.cond_adimplente = linha[10]
 
 			c.close()
 
 			return "Busca feita com sucesso!"
-		except:
-			return "Ocorreu um erro na busca do usuário"
+		except sqlite3.Error as erro:
+			return "Ocorreu um erro na busca do usuário", erro

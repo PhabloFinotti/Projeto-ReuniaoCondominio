@@ -235,20 +235,21 @@ class Application:
 	def alterarUsuario(self):
 		user = Condominos()
 
-		user.txtApartamento = self.txtApartamento.get()
-		user.txtCPF = self.txtCPF.get()
-		user.txtNome = self.txtNome.get()
-		user.txtTPpessoa = self.txtTPpessoa.get()
-		user.txtRG = self.txtRG.get()
-		user.txtNascimento = self.txtNascimento.get()
-		user.txtEmail = self.txtEmail.get()
-		user.txtTelResidencia = self.txtTelResidencia.get()
-		user.txtTelComercial = self.txtTelComercial.get()
-		user.txtTelCelular = self.txtTelCelular.get()
-		user.txtAdimplente = self.txtAdimplente = BooleanVar()
+		user.cond_apartamento = self.txtApartamento.get()
+		user.cond_cpf = self.txtCPF.get()
+		user.cond_nome = self.txtNome.get()
+		user.cond_tppessoa = self.txtTPpessoa.get()
+		user.cond_rg = self.txtRG.get()
+		user.cond_nascimento = self.txtNascimento.get()
+		user.cond_email = self.txtEmail.get()
+		user.cond_telresidencial = self.txtTelResidencia.get()
+		user.cond_telcomercial = self.txtTelComercial.get()
+		user.cond_telcelular = self.txtTelCelular.get()
+		user.cond_adimplente = self.resTxtAdimplente.get()
 
 		self.lblmsg["text"] = user.updateUser()
 
+		
 		self.txtApartamento.delete(0, END)
 		self.txtCPF.delete(0, END)
 		self.txtNome.delete(0, END)
@@ -259,7 +260,7 @@ class Application:
 		self.txtTelResidencia.delete(0, END)
 		self.txtTelComercial.delete(0, END)
 		self.txtTelCelular.delete(0, END)
-		self.txtAdimplente.delete(0, END)
+		self.txtAdimplente = BooleanVar(False)
 
 
 
@@ -269,7 +270,7 @@ class Application:
 		user.txtApartamento = self.txtApartamento.get()
 
 		self.lblmsg["text"] = user.deleteUser()
-
+		
 		self.txtApartamento.delete(0, END)
 		self.txtCPF.delete(0, END)
 		self.txtNome.delete(0, END)
@@ -280,49 +281,48 @@ class Application:
 		self.txtTelResidencia.delete(0, END)
 		self.txtTelComercial.delete(0, END)
 		self.txtTelCelular.delete(0, END)
-		self.txtAdimplente.delete(0, END)
-
+		self.txtAdimplente = BooleanVar(False)
 
 	def buscarUsuario(self):
 		user = Condominos()
 
-		user.txtApartamento = self.txtApartamento.get()
+		user.cond_apartamento = self.txtApartamento.get()
 
-		self.lblmsg["text"] = user.selectCond(user.txtApartamento)
+		self.lblmsg["text"] = user.selectCond(user.cond_apartamento)
 
 
 		self.txtApartamento.delete(0, END)
-		self.txtApartamento.insert(INSERT, user.txtApartamento)
+		self.txtApartamento.insert(INSERT, user.cond_apartamento)
 
 		self.txtCPF.delete(0, END)
-		self.txtCPF.insert(INSERT, user.txtCPF)
+		self.txtCPF.insert(INSERT, user.cond_cpf)
 
 		self.txtNome.delete(0, END)
-		self.txtNome.insert(INSERT, user.txtNome)
+		self.txtNome.insert(INSERT, user.cond_nome)
 
 		self.txtTPpessoa.delete(0, END)
-		self.txtTPpessoa.insert(INSERT, user.txtTPpessoa)
+		self.txtTPpessoa.insert(INSERT, user.cond_tppessoa)
 
 		self.txtRG.delete(0, END)
-		self.txtRG.insert(INSERT, user.txtRG)
+		self.txtRG.insert(INSERT, user.cond_rg)
 
 		self.txtNascimento.delete(0, END)
-		self.txtNascimento.insert(INSERT, user.txtNascimento)
+		self.txtNascimento.insert(INSERT, user.cond_nascimento)
 
 		self.txtEmail.delete(0, END)
-		self.txtEmail.insert(INSERT, user.txtEmail)
+		self.txtEmail.insert(INSERT, user.cond_email)
 
 		self.txtTelResidencia.delete(0, END)
-		self.txtTelResidencia.insert(INSERT, user.txtTelResidencia)
+		self.txtTelResidencia.insert(INSERT, user.cond_telresidencial)
 
 		self.txtTelComercial.delete(0, END)
-		self.txtTelComercial.insert(INSERT, user.txtTelComercial)
+		self.txtTelComercial.insert(INSERT, user.cond_telcomercial)
 
 		self.txtTelCelular.delete(0, END)
-		self.txtTelCelular.insert(INSERT, user.txtTelCelular)
+		self.txtTelCelular.insert(INSERT, user.cond_telcelular)
 
-		self.txtAdimplente.delete(0, END)
-		self.txtAdimplente.insert(INSERT, user.txtAdimplente)
+		# self.txtAdimplente = BooleanVar(False) 
+		# self.txtAdimplente = BooleanVar(user.cond_adimplente) 
 
 
 root = Tk()
