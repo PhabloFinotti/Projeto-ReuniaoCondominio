@@ -9,45 +9,57 @@ class Application:
 		self.container1 = Frame(master)
 		self.container1["pady"] = 10
 		self.container1.pack()
+
 		self.container2 = Frame(master)
 		self.container2["padx"] = 20
 		self.container2["pady"] = 5
 		self.container2.pack()
+
 		self.container3 = Frame(master)
 		self.container3["padx"] = 20
 		self.container3["pady"] = 5
 		self.container3.pack()
+		
 		self.container4 = Frame(master)
 		self.container4["padx"] = 20
 		self.container4["pady"] = 5
 		self.container4.pack()
+
 		self.container5 = Frame(master)
 		self.container5["padx"] = 20
 		self.container5["pady"] = 5
 		self.container5.pack()
+
 		self.container6 = Frame(master)
 		self.container6["padx"] = 20
 		self.container6["pady"] = 5
 		self.container6.pack()
+
 		self.container7 = Frame(master)
 		self.container7["padx"] = 20
 		self.container7["pady"] = 5
 		self.container7.pack()
+
 		self.container8 = Frame(master)
 		self.container8["padx"] = 20
 		self.container8["pady"] = 10
 		self.container8.pack()
+
 		self.container9 = Frame(master)
 		self.container9["pady"] = 15
 		self.container9.pack()
+		
 		self.container10 = Frame(master)
 		self.container10["pady"] = 15
 		self.container10.pack()
+
 
 		self.titulo = Label(self.container1, text="Informe os dados : ")
 		self.titulo["font"] = ("Calibri", "9", "bold")
 		self.titulo.pack ()
 
+
+		
 		self.txtApartamento = Label(self.container2,
 		text="Apartamento: ", font=self.fonte, width=15)
 		self.txtApartamento.pack(side=LEFT)
@@ -229,7 +241,7 @@ class Application:
 		self.txtTelResidencia.delete(0, END)
 		self.txtTelComercial.delete(0, END)
 		self.txtTelCelular.delete(0, END)
-		self.txtAdimplente = BooleanVar(False)
+		self.resTxtAdimplente.set(0)
 
 
 	def alterarUsuario(self):
@@ -260,7 +272,7 @@ class Application:
 		self.txtTelResidencia.delete(0, END)
 		self.txtTelComercial.delete(0, END)
 		self.txtTelCelular.delete(0, END)
-		self.txtAdimplente = BooleanVar(False)
+		self.resTxtAdimplente.set(0)
 
 
 
@@ -281,7 +293,7 @@ class Application:
 		self.txtTelResidencia.delete(0, END)
 		self.txtTelComercial.delete(0, END)
 		self.txtTelCelular.delete(0, END)
-		self.txtAdimplente = BooleanVar(False)
+		self.resTxtAdimplente.set(0)
 
 	def buscarUsuario(self):
 		user = Condominos()
@@ -321,10 +333,12 @@ class Application:
 		self.txtTelCelular.delete(0, END)
 		self.txtTelCelular.insert(INSERT, user.cond_telcelular)
 
-		# self.txtAdimplente = BooleanVar(False) 
-		# self.txtAdimplente = BooleanVar(user.cond_adimplente) 
+		self.resTxtAdimplente.set(0) 
+		self.resTxtAdimplente.set(user.cond_adimplente)
 
 
 root = Tk()
+root.title('Registro de Condominos')
+
 Application(root)
 root.mainloop()
