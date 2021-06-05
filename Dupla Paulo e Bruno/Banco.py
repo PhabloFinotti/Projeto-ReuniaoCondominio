@@ -12,6 +12,7 @@ class Banco():
         c.execute("""create table if not exists reuniao(
                         reuni_id integer primary key autoincrement,
                         reuni_data datetime,
+                        reuni_condominos varchar(50), 
                         reuni_horario varchar(20),
                         reuni_nome varchar(50),
                         reuni_tema varchar(50),
