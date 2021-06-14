@@ -61,13 +61,16 @@ class Application:
 
 
 def abrirTelaCondominos():
-    os.system('python DuplaPhabloeCarlos\App.py')
+    path = os.path.join('DuplaPhabloeCarlos', 'App.py')
+    os.system('python '+ path)
 
 def abrirTelaAtaReuniao():
-    os.system('python DuplaAlexeGabriel\App.py')
+    path = os.path.join('DuplaAlexeGabriel', 'ata_reuniao_view2.py')
+    os.system('python '+ path)
 
 def abrirTelaAtaPresenca():
-    os.system('python DuplaPauloeBruno\App.py')
+    path = os.path.join('DuplaPauloeBruno', 'App.py')
+    os.system('python '+ path)
 	
 root = Tk()
 root.title('Tela Inicial')
