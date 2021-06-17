@@ -4,7 +4,7 @@ class Conexao:
     
     def conectar(self):
         conexao = None 
-        db_path = 'banco.db'
+        db_path = '../banco.db'
         try:
             conexao = sqlite3.connect(db_path)
         except sqlite3.DatabaseError as err:
@@ -13,7 +13,6 @@ class Conexao:
         return conexao
 
     def createTableAtaReuniao(self,conexao,cursor):
-        # cursor.execute('DROP TABLE IF EXISTS ata_reuniao')
 
         sql = """ CREATE TABLE IF NOT EXISTS ata_reuniao (
                     ata_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +23,6 @@ class Conexao:
         conexao.commit()
 
     def createTablePresenca(self,conexao,cursor):
-        # cursor.execute('DROP TABLE IF EXISTS ata_presenca')
         
         sql = """ CREATE TABLE IF NOT EXISTS ata_presenca( 
                     pres_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +37,6 @@ class Conexao:
         conexao.commit()
 
     def createTableCondominos(self,conexao,cursor):
-        # cursor.execute('DROP TABLE IF EXISTS condominos')
 
         sql = """create table if not exists condominos (
 				    id integer primary key autoincrement ,
@@ -59,7 +56,6 @@ class Conexao:
         conexao.commit()
 
     def createTableReuniao(self,conexao,cursor):
-        # cursor.execute('DROP TABLE IF EXISTS reuniao')
 
         sql = """ CREATE TABLE IF NOT EXISTS reuniao (
                 reuni_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -70,7 +66,6 @@ class Conexao:
         conexao.commit()
         
 
-    # def createTables(self):
 
     def __init__(self):
         conexao = self.conectar() 
