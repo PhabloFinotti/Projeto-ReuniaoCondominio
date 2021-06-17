@@ -1,44 +1,61 @@
 from typing import cast
-from Banco import Banco
+from Banco import Conexao
 
 import sqlite3
-from datetime import date
+from datetime import datetime
 
 
-class Reuniao(object):
+class Reuniao:
 
-    def __init__(self, reuniId=0, dateData=date, txtHorario="", txtNome="", txtTema="", txtLocal="", txtCondominos=""):
-        self.reuni_id = reuniId
-        self.reuni_data = dateData
-        self.reuni_horario = txtHorario
-        self.reuni_nome = txtNome
-        self.reuni_tema = txtTema
-        self.reuni_local = txtLocal
-        self.reuni_condominos = txtCondominos
+    # def __init__(self, reuniId=0, dateData=datetime, txtNome="", txtTema="", txtLocal=""):
+    # self.reuni_id = reuniId
+    # self.reuni_data = dateData
+    # self.reuni_nome = txtNome
+    # self.reuni_tema = txtTema
+    # self.reuni_local = txtLocal
 
-    def insertReuniao(self):
-        banco = Banco()
+
+    
+    def criar(self):
+        conn = Conexao()
+
+        conn.createTables()
+
+    def insertReuniao(self, date, tema, local):
+
+        self.reuni_tema = tema
+        self.reuni_local = local
+        self.reuni_data = data
 
         try:
-            sqlInsert = "insert into reuniao(reuni_data, reuni_horario, reuni_nome, reuni_tema, reuni_local, reuni_condominos) values (?,?,?,?,?,?)"
-            dataTuple = (self.reuni_data.strftime(
-                "%Y-%m-%d"), self.reuni_horario, self.reuni_nome, self.reuni_tema, self.reuni_local, self.reuni_condominos)
-            c = banco.conexao.cursor()
-            c.execute(sqlInsert, dataTuple)
-            banco.conexao.commit()
-            c.close()
+            conn = Conexao()
+            conexao = conn.conectar()
+            cursor = conexao.cursor()
+            sqlInsert = "insert into reuniao( reuni_tema, reuni_local) values ( '"+ int(self.reuni_data) +"', '"+ self.reuni_tema +"', '"+ self.reuni_tema +"' )"
+            # dataTuple = (self.reuni_tema, self.reuni_local)
+
+
+            cursor.execute( sqlInsert )
+
+            conexao.commit()
+
+            cursor.close()
+
+            conexao.close()
+
+            # return True
 
             return "Reunião cadastrada com sucesso!"
         except sqlite3.Error as erro:
             return "Ocorreu um erro na inserção da reunião.", erro
 
     def updateReuniao(self):
-        banco = Banco()
+        banco = Conexao()
 
         try:
-            sqlUpdate = "update reuniao set reuni_data=?, reuni_horario=?, reuni_nome=?, reuni_tema=?, reuni_local=?, reuni_condominos=? where reuni_id=?"
+            sqlUpdate = "update reuniao set reuni_data=?, reuni_horario=?, reuni_nome=?, reuni_tema=?, reuni_local=?, reuni_condominio=? where reuni_id=?"
             dataTuple = (self.reuni_data, self.reuni_horario, self.reuni_nome,
-                         self.reuni_tema, self.reuni_local, self.reuni_condominos, self.reuni_id)
+                         self.reuni_tema, self.reuni_local, self.reuni_condominio, self.reuni_id)
             c = banco.conexao.cursor()
             c.execute(sqlUpdate, dataTuple)
             banco.conexao.commit()
@@ -49,11 +66,11 @@ class Reuniao(object):
             return "Ocorreu um erro na update da reunião.", erro
 
     def findAllReuniao():
-        banco = Banco()
+        banco = Conexao()
         try:
             c = banco.conexao.cursor()
             c.execute(
-                "select reuni_id, reuni_data, reuni_horario, reuni_nome, reuni_tema, reuni_local, reuni_condominos from reuniao")
+                "select reuni_id, reuni_data, reuni_horario, reuni_nome, reuni_tema, reuni_local, reuni_condominio from reuniao")
             records = c.fetchall()
             reunioes = []
             for row in records:
@@ -65,7 +82,7 @@ class Reuniao(object):
             return []
 
     def deleteReuniao(self):
-        banco = Banco()
+        banco = Conexao()
 
         try:
             sqlUpdate = "delete from reuniao reuni_id=?"
@@ -78,3 +95,20 @@ class Reuniao(object):
             return "Reunião apagada com sucesso!"
         except sqlite3.Error as erro:
             return "Ocorreu um erro na delete da reunião.", erro
+
+    def consultar_reuniao(self):
+        conn = Conexao()
+
+        conexao = conn.conectar()
+
+        cursor = conexao.cursor()
+
+        sql = "SELECT * FROM reuniao"
+
+        resultado = cursor.execute(sql).fetchall()
+
+        cursor.close()
+
+        conexao.close()
+
+        return resultado

@@ -1,151 +1,177 @@
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox as mb
 from datetime import datetime
 from Reuniao import Reuniao
-
-from tkinter import *
 from tkcalendar import *
+from tkinter import ttk
 
 
-class Application:
-    def __init__(self, master=None):
-        self.fonte = ("Verdana", "8")
+class ReuniaoView:
 
-        self.container1 = Frame(master)
-        self.container1["pady"] = 10
-        self.container1.pack()
-        self.container2 = Frame(master)
-        self.container2["padx"] = 20
-        self.container2["pady"] = 5
-        self.container2.pack()
-        self.container3 = Frame(master)
-        self.container3["padx"] = 20
-        self.container3["pady"] = 5
-        self.container3.pack()
-        self.container4 = Frame(master)
-        self.container4["padx"] = 20
-        self.container4["pady"] = 5
-        self.container4.pack()
-        self.container5 = Frame(master)
-        self.container5["padx"] = 20
-        self.container5["pady"] = 5
-        self.container5.pack()
-        self.container6 = Frame(master)
-        self.container6["padx"] = 20
-        self.container6["pady"] = 5
-        self.container6.pack()
-        self.container7 = Frame(master)
-        self.container7["padx"] = 20
-        self.container7["pady"] = 5
-        self.container7.pack()
-        self.container8 = Frame(master)
-        self.container8["padx"] = 20
-        self.container8["pady"] = 10
-        self.container8.pack()
-        self.container9 = Frame(master)
-        self.container9["pady"] = 15
-        self.container9.pack()
-        self.container10 = Frame(master)
-        self.container10["pady"] = 15
-        self.container10.pack()
+    def __init__(self, win):
 
-        self.titulo = Label(self.container1, text="Controle de Reuniões: ")
-        self.titulo["font"] = ("Calibri", "12", "bold")
-        self.titulo.pack()
+        self.ReuniaoCRUD = Reuniao()
+        self.ReuniaoCRUD.criar()
 
-        #Campo condôminos
-        self.txtCdm = Label(self.container2,
-                            text="Condôminos:", font=self.fonte, width=15)
-        self.txtCdm.pack(side=LEFT)
+        #self.reuniaoSelected = None
+        #self.reuniaoResult = None
 
-        self.txtCdm = Entry(self.container2)
-        self.txtCdm["width"] = 10
-        self.txtCdm["font"] = self.fonte
-        self.txtCdm.pack(side=LEFT)
+        #self.apartamentoSelected = None
+        #self.apartamentoResult = None
 
-        #Campo reunião
-        self.txtNome = Label(self.container2,
-                             text="Reunião:", font=self.fonte, width=15)
-        self.txtNome.pack(side=LEFT)
+        #self.temaSelected = None
+        #self.temaResult = None
 
-        self.txtNome = Entry(self.container2)
-        self.txtNome["width"] = 10
-        self.txtNome["font"] = self.fonte
-        self.txtNome.pack(side=LEFT)
+        #Tabela Reuniao
 
-        #Campo tema
-        self.txtTema = Label(self.container2,
-                             text="Tema:", font=self.fonte, width=15)
-        self.txtTema.pack(side=LEFT)
+        self.temaLabel = tk.Label(win, text="Tema:")
+        self.temaEdit = tk.Entry(win, width=20, bd=3)
 
-        self.txtTema = Entry(self.container2)
-        self.txtTema["width"] = 10
-        self.txtTema["font"] = self.fonte
-        self.txtTema.pack(side=LEFT)
+        self.localLabel = tk.Label(win, text="Local:")
+        self.localEdit = tk.Entry(win, width=15, bd=3)
 
-        #Campo local
-        self.txtLocal = Label(self.container2,
-                              text="Local:", font=self.fonte, width=15)
-        self.txtLocal.pack(side=LEFT)
+        self.dataLabel = tk.Label(win, text="Data:")
+        self.dataEdit = DateEntry(win, width=10, bd=3)
 
-        self.txtLocal = Entry(self.container2)
-        self.txtLocal["width"] = 10
-        self.txtLocal["font"] = self.fonte
-        self.txtLocal.pack(side=LEFT)
+        self.btnCadastrar = tk.Button(win,
+                                      text="Cadastrar", width=7, command=self._on_cadastrar_clicked)
+        self.btnAlterar = tk.Button(win,
+                                    text="Alterar", width=7, command=self._on_alterar_clicked)
+        self.btnExcluir = tk.Button(win,
+                                    text="Excluir", width=7, command=self._on_excluir_clicked)
 
-        #Campo data
-        self.txtData = Label(self.container2,
-                             text="Data:", font=self.fonte, width=15)
-        self.txtData.pack(side=LEFT)
+        #Localização itens
 
-        self.txtData = DateEntry(self.container2)
-        self.txtData["width"] = 10
-        self.txtData["font"] = self.fonte
-        self.txtData.pack(side=LEFT)
+        self.temaLabel.place(x=40, y=10)
+        self.temaEdit.place(x=40, y=30)
 
-        #Campo horario
-        self.txtHorario = Label(self.container2,
-                                text="Horário: ", font=self.fonte, width=15)
-        self.txtHorario.pack(side=LEFT)
+        self.localLabel.place(x=180, y=10)
+        self.localEdit.place(x=180, y=30)
 
-        self.txtHorario = Entry(self.container2)
-        self.txtHorario["width"] = 10
-        self.txtHorario["font"] = self.fonte
-        self.txtHorario.pack(side=LEFT)
+        self.dataLabel.place(x=300, y=10)
+        self.dataEdit.place(x=300, y=30)
 
-        # Botão Cadastro
-        self.btnSalvar = Button(self.container9, text=" Cadastrar ",
-                                font=self.fonte, width=10)
-        self.btnSalvar["command"] = self.salvarReuniao
-        self.btnSalvar.pack(side=RIGHT)
+        #TreeView Reuniao
+        self.reuniaoList = ttk.Treeview(
+            win, columns=(1, 2, 3), show='headings')
+        self.verscrlbar = ttk.Scrollbar(
+            win, orient="vertical", command=self.reuniaoList.yview)
+        self.verscrlbar.pack(side='right', fill='x')
+        self.reuniaoList.configure(yscrollcommand=self.verscrlbar.set)
 
-        # MENSAGEM, pega o return da função na Class Condomino
-        self.lblmsg = Label(self.container10, text="")
-        self.lblmsg["font"] = ("Verdana", "9", "italic")
-        self.lblmsg.pack()
+        self.reuniaoList.heading(1, text='ID')
+        self.reuniaoList.heading(2, text='Tema')
+        self.reuniaoList.heading(3, text='Local')
 
-    def salvarReuniao(self):
-        reuniao = self.preencherCampos()
-        self.lblmsg["text"] = reuniao.insertReuniao()
-        self.limparCampos()
+        self.reuniaoList.column(1, minwidth=0, width=80)
+        self.reuniaoList.column(2, minwidth=0, width=130)
+        self.reuniaoList.column(3, minwidth=0, width=130)
+        self.reuniaoList.pack()
 
-    def preencherCampos(self):
-        reuniao = Reuniao()
-        reuniao.reuni_cdm = self.txtCdm.get()
-        reuniao.reuni_nome = self.txtNome.get()
-        reuniao.reuni_tema = self.txtTema.get()
-        reuniao.reuni_local = self.txtLocal.get()
-        reuniao.reuni_data = datetime.now()
-        reuniao.reuni_horario = self.txtHorario.get()
+        self.reuniaoList.bind("<<TreeviewSelect>>", self._on_mostrar_clicked)
 
-        return reuniao
+        #Posicionar List e scroll
+        self.reuniaoList.place(x=40, y=73, height=185)
+        self.verscrlbar.place(x=387, y=98, height=159)
 
-    def limparCampos(self):
-        self.txtCdm.delete(0, END)
-        self.txtNome.delete(0, END)
-        self.txtTema.delete(0, END)
-        self.txtLocal.delete(0, END)
-        self.txtHorario.delete(0, END)
+        self.carregar_dados_iniciais()
+
+        #-> self.carregar_dados_iniciais_Ata()
+
+        #Botoes
+        self.btnCadastrar.place(x=40, y=260)
+        self.btnAlterar.place(x=110, y=260)
+        self.btnExcluir.place(x=180, y=260)
+
+    def carregar_dados_iniciais(self):
+        resultado = self.ReuniaoCRUD.consultar_reuniao()
+        self.reuniaoList.delete(*self.reuniaoList.get_children())
+
+        count = 0
+        for registro in resultado:
+            self.reuniaoList.insert('', 'end', iid=count, values=(
+                str(registro[0]), str(registro[2]), (registro[5]), (registro[5])))
+            count = count + 1
+
+    def _on_mostrar_clicked(self, event):
+        selection = self.reuniaoList.selection()
+        item = self.reuniaoList.item(selection[0])
+
+        tema = item["values"][2]
+        local = item["values"][3]
+
+        self.temaEdit.delete(0, tk.END)
+        self.temaEdit.insert(0, tema)
+
+        self.localEdit.delete(0, tk.END)
+        self.localEdit.insert(0, local)
+
+    def _on_cadastrar_clicked(self):
+        tema = self.temaEdit.get()
+        local = self.localEdit.get()
+        data = self.dataEdit.get()
+
+        teste = self.ReuniaoCRUD.insertReuniao( data, tema, local)
+
+        mb.showinfo("Mensagem", teste)
+        # if self.ReuniaoCRUD.insertReuniao(tema, local) == True:
+
+            # mb.showinfo("Mensagem", "Registro executado com sucesso!")
+
+            # self.temaEdit.delete(0, tk.END)
+            # self.localEdit.delete(0, tk.END)
+        # else:
+            # mb.showinfo("Mensagem", "Erro no Registro!")
+            # self.temaEdit.focus_set()
+            # self.localEdit.focus_set()
+
+        self.carregar_dados_iniciais()
+
+    def _on_alterar_clicked(self):
+        linhaSelecionada = self.reuniaoList.selection()
+        if (len(linhaSelecionada) != 0):
+            id_presenca = self.reuniaoList.item(
+                linhaSelecionada[0])["values"][0]
+            presenca = self.presencaEdit.get()
+            reuniao_id = self.temaSelected
+            apartamento_id = self.apartamentoSelected
+
+            if self.ReuniaoCRUD.atualizarP(id_presenca, presenca, reuniao_id, apartamento_id):
+
+                #self.reuniaoList.item(self.reuniaoList.focus(), values=(str(id_presenca),presenca))
+
+                #self.reuniaoList.selection_remove(self.reuniaoList.selection()[0])
+
+                mb.showinfo("Mensagem", "Alteração executado com sucesso!")
+                self.presencaEdit.delete(0, tk.END)
+            else:
+                mb.showinfo("Mensagem", "Erro no alteração!")
+                self.presencaEdit.focus_set()
+
+        self.carregar_dados_iniciais()
+
+    def _on_excluir_clicked(self):
+        linhaSelecionada = self.reuniaoList.selection()
+
+        if len(linhaSelecionada) != 0:
+            id_presenca = self.reuniaoList.item(
+                linhaSelecionada[0])["values"][0]
+
+            if self.ReuniaoCRUD.excluirP(id_presenca):
+                self.reuniaoList.delete(linhaSelecionada)
+
+                mb.showinfo("Mensagem", "Exclusão executada com sucesso.")
+                self.presencaEdit.delete(0, tk.END)
+            else:
+                mb.showinfo("Mensagem", "Erro na exclusão.")
+                self.presencaEdit.focus_set()
 
 
-root = Tk()
-Application(root)
-root.mainloop()
+    #Janela
+janela = tk.Tk()
+principal = ReuniaoView(janela)
+janela.title("Controle de Reuniões")
+janela.geometry("430x290+0+0")
+janela.resizable(False, False)
+janela.mainloop()
