@@ -4,7 +4,7 @@ class Conexao:
     
     def conectar(self):
         conexao = None 
-        db_path = 'BancoApp.db'
+        db_path = 'banco.db'
         try:
             conexao = sqlite3.connect(db_path)
         except sqlite3.DatabaseError as err:
@@ -70,7 +70,9 @@ class Conexao:
         conexao.commit()
         
 
-    def createTables(self):
+    # def createTables(self):
+
+    def __init__(self):
         conexao = self.conectar() 
         cursor = conexao.cursor()
 

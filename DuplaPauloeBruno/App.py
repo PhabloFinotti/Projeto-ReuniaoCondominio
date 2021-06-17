@@ -25,13 +25,13 @@ class ReuniaoView:
 
         #Tabela Reuniao
 
-        self.temaLabel = tk.Label(win, text="Tema:")
+        self.temaLabel = tk.Label(win, text="Tema: ")
         self.temaEdit = tk.Entry(win, width=20, bd=3)
 
-        self.localLabel = tk.Label(win, text="Local:")
+        self.localLabel = tk.Label(win, text="Local: ")
         self.localEdit = tk.Entry(win, width=15, bd=3)
 
-        self.dataLabel = tk.Label(win, text="Data:")
+        self.dataLabel = tk.Label(win, text="Data: ")
         self.dataEdit = DateEntry(win, width=10, bd=3)
 
         self.btnCadastrar = tk.Button(win,
@@ -91,21 +91,26 @@ class ReuniaoView:
         count = 0
         for registro in resultado:
             self.reuniaoList.insert('', 'end', iid=count, values=(
-                str(registro[0]), str(registro[1]), (registro[2])))
+                str(registro[0]), str(registro[1]), (registro[2]), (registro[3])))
             count = count + 1
 
     def _on_mostrar_clicked(self, event):
         selection = self.reuniaoList.selection()
         item = self.reuniaoList.item(selection[0])
 
+        data = item["values"][1]
         tema = item["values"][2]
         local = item["values"][3]
+        
+
+        self.localEdit.delete(0, tk.END)
+        self.localEdit.insert(0, local)
 
         self.temaEdit.delete(0, tk.END)
         self.temaEdit.insert(0, tema)
 
-        self.localEdit.delete(0, tk.END)
-        self.localEdit.insert(0, local)
+        self.dataEdit.delete(0, tk.END)
+        self.dataEdit.insert(0, data)
 
     def _on_cadastrar_clicked(self):
         tema = self.temaEdit.get()
@@ -131,23 +136,20 @@ class ReuniaoView:
     def _on_alterar_clicked(self):
         linhaSelecionada = self.reuniaoList.selection()
         if (len(linhaSelecionada) != 0):
-            id_presenca = self.reuniaoList.item(
+            reuni_id = self.reuniaoList.item(
                 linhaSelecionada[0])["values"][0]
-            presenca = self.presencaEdit.get()
-            reuniao_id = self.temaSelected
-            apartamento_id = self.apartamentoSelected
+            reuni_data = self.dataEdit.get()
+            reuni_tema = self.temaEdit.get()
+            reuni_local = self.localEdit.get()
+            
 
-            if self.ReuniaoCRUD.atualizarP(id_presenca, presenca, reuniao_id, apartamento_id):
+            teste = self.ReuniaoCRUD.updateReuniao(reuni_id, reuni_data, reuni_tema, reuni_local)
 
-                #self.reuniaoList.item(self.reuniaoList.focus(), values=(str(id_presenca),presenca))
-
-                #self.reuniaoList.selection_remove(self.reuniaoList.selection()[0])
-
-                mb.showinfo("Mensagem", "Alteração executado com sucesso!")
-                self.presencaEdit.delete(0, tk.END)
-            else:
+            mb.showinfo("Mensagem", type(teste))
+            
+        """ else:
                 mb.showinfo("Mensagem", "Erro no alteração!")
-                self.presencaEdit.focus_set()
+                self.presencaEdit.focus_set() """
 
         self.carregar_dados_iniciais()
 

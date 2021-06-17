@@ -31,7 +31,7 @@ class Reuniao:
             conn = Conexao()
             conexao = conn.conectar()
             cursor = conexao.cursor()
-            sqlInsert = "insert into reuniao( reuni_data, reuni_tema, reuni_local) values ( '"+ self.reuni_data +"', '"+ self.reuni_tema +"', '"+ self.reuni_tema +"' )"
+            sqlInsert = "insert into reuniao( reuni_data, reuni_tema, reuni_local) values ( '"+ self.reuni_data +"', '"+ self.reuni_tema +"', '"+ self.reuni_local +"' )"
             # dataTuple = (self.reuni_tema, self.reuni_local)
 
 
@@ -49,15 +49,22 @@ class Reuniao:
         except sqlite3.Error as erro:
             return "Ocorreu um erro na inserção da reunião.", erro
 
-    def updateReuniao(self):
+    def updateReuniao(self, id="", date="", tema="", local=""):
+
+        self.reuni_id = id
+        self.reuni_tema = tema
+        self.reuni_local = local
+        self.reuni_data = date
+
+
         banco = Conexao()
 
         try:
-            sqlUpdate = "update reuniao set reuni_data=?, reuni_horario=?, reuni_nome=?, reuni_tema=?, reuni_local=?, reuni_condominio=? where reuni_id=?"
-            dataTuple = (self.reuni_data, self.reuni_horario, self.reuni_nome,
-                         self.reuni_tema, self.reuni_local, self.reuni_condominio, self.reuni_id)
+            # sqlUpdate = "update reuniao set reuni_data='"+self.reuni_data+"', reuni_tema='"+self.reuni_tema+"', reuni_local='"+self.reuni_local+"' where reuni_id='"+self.reuni_id+"'"
+            sqlUpdate = "update reuniao set reuni_tema='"+self.reuni_tema+"' where reuni_id = '", self.reuni_id ,"'"
+            # dataTuple = (self.reuni_data, self.reuni_tema, self.reuni_local, self.reuni_id)
             c = banco.conexao.cursor()
-            c.execute(sqlUpdate, dataTuple)
+            c.execute(sqlUpdate)
             banco.conexao.commit()
             c.close()
 

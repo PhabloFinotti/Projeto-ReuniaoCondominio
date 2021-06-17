@@ -34,7 +34,7 @@ class Application:
         self.container4.pack()
 
 
-        self.titulo = Label(self.container1, text="Selecione qual tela quer ver ")
+        self.titulo = Label(self.container1, text="Selecione qual tela quer utilizar")
         self.titulo["font"] = ("Comic Sans", "15", "bold")
         self.titulo.pack ()
 
@@ -61,16 +61,26 @@ class Application:
 
 
 def abrirTelaCondominos():
-    path = os.path.join('DuplaPhabloeCarlos', 'App.py')
-    os.system('python '+ path)
+
+    
+    pathfile = os.path.dirname(__file__)
+    teste = os.path.join(pathfile,"DuplaPhabloeCarlos","App.py")
+
+    # path = os.path.join('DuplaPhabloeCarlos', 'App.py')
+    os.system('python '+ teste)
 
 def abrirTelaAtaReuniao():
-    path = os.path.join('ParteAlex', 'ata_reuniao_view2.py')
-    os.system('python '+ path)
+    pathfile = os.path.dirname(__file__)
+    teste = os.path.join(pathfile,"DuplaAlexeGabriel","ata_reuniao_view2.py")
+    # path = os.path.join('ParteAlex', 'ata_reuniao_view2.py')
+    os.system('python '+ teste)
 
 def abrirTelaAtaPresenca():
-    path = os.path.join('DuplaPauloeBruno', 'App.py')
-    os.system('python '+ path)
+    pathfile = os.path.dirname(__file__)
+    teste = os.path.join(pathfile,"DuplaPauloeBruno","App.py")
+
+    # path = os.path.join('DuplaPauloeBruno', 'App.py')
+    os.system('python '+ teste)
 	
 root = Tk()
 root.title('Tela Inicial')
