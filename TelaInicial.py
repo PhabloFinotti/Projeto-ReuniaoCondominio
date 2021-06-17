@@ -67,7 +67,7 @@ class Application:
 def abrirTelaCondominos():
 
     
-    pathfile = os.path.dirname(__file__)
+    pathfile = '"'+os.path.dirname(__file__)+'"'
     teste = os.path.join(pathfile,"DuplaPhabloeCarlos","App.py")
 
     # path = os.path.join('DuplaPhabloeCarlos', 'App.py')
@@ -76,7 +76,7 @@ def abrirTelaCondominos():
 
     
 def abrirTelaAtaPresenca():
-    pathfile = os.path.dirname(__file__)
+    pathfile = '"'+os.path.dirname(__file__)+'"'
     teste = os.path.join(pathfile,"DuplaPauloeBruno","App.py")
 
     # path = os.path.join('DuplaPauloeBruno', 'App.py')
@@ -84,7 +84,7 @@ def abrirTelaAtaPresenca():
 	
 
 def abrirTelaAtaReuniao():
-    pathfile = os.path.dirname(__file__)
+    pathfile = '"'+os.path.dirname(__file__)+'"'
     teste = os.path.join(pathfile,"DuplaAlexeGabriel","ata_reuniao_view2.py")
     # path = os.path.join('ParteAlex', 'ata_reuniao_view2.py')
     os.system('python '+ teste)
