@@ -65,7 +65,7 @@ def abrirTelaCondominos():
     os.system('python '+ path)
 
 def abrirTelaAtaReuniao():
-    path = os.path.join('DuplaAlexeGabriel', 'ata_reuniao_view2.py')
+    path = os.path.join('ParteAlex', 'ata_reuniao_view2.py')
     os.system('python '+ path)
 
 def abrirTelaAtaPresenca():

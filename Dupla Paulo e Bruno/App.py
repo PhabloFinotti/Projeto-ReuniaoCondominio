@@ -91,7 +91,7 @@ class ReuniaoView:
         count = 0
         for registro in resultado:
             self.reuniaoList.insert('', 'end', iid=count, values=(
-                str(registro[0]), str(registro[2]), (registro[5]), (registro[5])))
+                str(registro[0]), str(registro[1]), (registro[2])))
             count = count + 1
 
     def _on_mostrar_clicked(self, event):
@@ -112,7 +112,7 @@ class ReuniaoView:
         local = self.localEdit.get()
         data = self.dataEdit.get()
 
-        teste = self.ReuniaoCRUD.insertReuniao( data, tema, local)
+        teste = self.ReuniaoCRUD.insertReuniao( data, tema, local )
 
         mb.showinfo("Mensagem", teste)
         # if self.ReuniaoCRUD.insertReuniao(tema, local) == True:

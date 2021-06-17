@@ -1,19 +1,20 @@
 import sqlite3
 
-
 class Conexao:
-
+    
     def conectar(self):
-        conexao = None
+        conexao = None 
         db_path = 'BancoApp.db'
         try:
             conexao = sqlite3.connect(db_path)
-        except sqlite3.DatabaseError as erro:
+        except sqlite3.DatabaseError as err:
             print(f"Erro ao conectar o banco de dados {db_path}.")
 
         return conexao
 
-    def createTableAtaReuniao(self, conexao, cursor):
+    def createTableAtaReuniao(self,conexao,cursor):
+        cursor.execute('DROP TABLE IF EXISTS ata_reuniao')
+
         sql = """ CREATE TABLE IF NOT EXISTS ata_reuniao (
                     ata_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     ata_reuni_id INTEGER,
@@ -22,22 +23,24 @@ class Conexao:
         cursor.execute(sql)
         conexao.commit()
 
-    def createTablePresenca(self, conexao, cursor):
+    def createTablePresenca(self,conexao,cursor):
         cursor.execute('DROP TABLE IF EXISTS ata_presenca')
-
+        
         sql = """ CREATE TABLE IF NOT EXISTS ata_presenca( 
                     pres_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     pres_cond_id INTEGER,
                     pres_reuniao_id INTEGER,
                     pres_ata_id INTEGER,
                     presenca int,
-                    FOREIGN KEY (pres_ata_id) REFERENCES ata_reuniao (ata_id)
+                    FOREIGN KEY (pres_ata_id) REFERENCES ata_reuniao (ata_id),
                     FOREIGN KEY (pres_cond_id) REFERENCES condominos (id),
                     FOREIGN KEY (pres_reuniao_id) REFERENCES reuniao (reuni_id));"""
         cursor.execute(sql)
         conexao.commit()
 
-    def createTableCondominos(self, conexao, cursor):
+    def createTableCondominos(self,conexao,cursor):
+        cursor.execute('DROP TABLE IF EXISTS condominos')
+
         sql = """create table if not exists condominos (
 				    id integer primary key autoincrement ,
 				    cond_apartamento int,
@@ -55,20 +58,24 @@ class Conexao:
         cursor.execute(sql)
         conexao.commit()
 
-    def createTableReuniao(self, conexao, cursor):
+    def createTableReuniao(self,conexao,cursor):
+        cursor.execute('DROP TABLE IF EXISTS reuniao')
+
         sql = """ CREATE TABLE IF NOT EXISTS reuniao (
                 reuni_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                reuni_data DATE,
+                reuni_data DATETIME,
                 reuni_tema TEXT,
                 reuni_local TEXT);  """
         cursor.execute(sql)
         conexao.commit()
+        
 
     def createTables(self):
-        conexao = self.conectar()
+        conexao = self.conectar() 
         cursor = conexao.cursor()
 
         self.createTableAtaReuniao(conexao, cursor)
-        self.createTablePresenca(conexao, cursor)
+        self.createTablePresenca(conexao,cursor)
         self.createTableCondominos(conexao, cursor)
-        self.createTableReuniao(conexao, cursor)
+        self.createTableReuniao(conexao,cursor)
+

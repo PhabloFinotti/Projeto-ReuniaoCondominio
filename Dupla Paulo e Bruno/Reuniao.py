@@ -25,13 +25,13 @@ class Reuniao:
 
         self.reuni_tema = tema
         self.reuni_local = local
-        self.reuni_data = data
+        self.reuni_data = date
 
         try:
             conn = Conexao()
             conexao = conn.conectar()
             cursor = conexao.cursor()
-            sqlInsert = "insert into reuniao( reuni_tema, reuni_local) values ( '"+ int(self.reuni_data) +"', '"+ self.reuni_tema +"', '"+ self.reuni_tema +"' )"
+            sqlInsert = "insert into reuniao( reuni_data, reuni_tema, reuni_local) values ( '"+ self.reuni_data +"', '"+ self.reuni_tema +"', '"+ self.reuni_tema +"' )"
             # dataTuple = (self.reuni_tema, self.reuni_local)
 
 
