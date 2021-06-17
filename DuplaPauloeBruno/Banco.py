@@ -5,7 +5,7 @@ class Conexao:
 
     def conectar(self):
         conexao = None
-        db_path = 'banco.db'
+        db_path = '../banco.db'
         try:
             conexao = sqlite3.connect(db_path)
         except sqlite3.DatabaseError as erro:
