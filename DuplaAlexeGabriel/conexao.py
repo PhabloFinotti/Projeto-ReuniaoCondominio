@@ -13,7 +13,7 @@ class Conexao:
         return conexao
 
     def createTableAtaReuniao(self,conexao,cursor):
-        cursor.execute('DROP TABLE IF EXISTS ata_reuniao')
+        # cursor.execute('DROP TABLE IF EXISTS ata_reuniao')
 
         sql = """ CREATE TABLE IF NOT EXISTS ata_reuniao (
                     ata_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +24,7 @@ class Conexao:
         conexao.commit()
 
     def createTablePresenca(self,conexao,cursor):
-        cursor.execute('DROP TABLE IF EXISTS ata_presenca')
+        # cursor.execute('DROP TABLE IF EXISTS ata_presenca')
         
         sql = """ CREATE TABLE IF NOT EXISTS ata_presenca( 
                     pres_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +39,7 @@ class Conexao:
         conexao.commit()
 
     def createTableCondominos(self,conexao,cursor):
-        cursor.execute('DROP TABLE IF EXISTS condominos')
+        # cursor.execute('DROP TABLE IF EXISTS condominos')
 
         sql = """create table if not exists condominos (
 				    id integer primary key autoincrement ,
@@ -59,7 +59,7 @@ class Conexao:
         conexao.commit()
 
     def createTableReuniao(self,conexao,cursor):
-        cursor.execute('DROP TABLE IF EXISTS reuniao')
+        # cursor.execute('DROP TABLE IF EXISTS reuniao')
 
         sql = """ CREATE TABLE IF NOT EXISTS reuniao (
                 reuni_id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -1,4 +1,5 @@
-# from Condominos import Condominos
+# Feita por Phablo Finotti
+
 from tkinter import *
 from tkcalendar import *
 
@@ -46,18 +47,21 @@ class Application:
         self.iniciarCondominos.pack(side=RIGHT, pady=20)
 
 
+        
+        ########### FEITA POR PAULO GUILHERME E BRUNO VIEIRA ###########
+        self.iniciarTelaPresenca = Button(self.container3, text="Abrir tela Ata de Reunião",
+        font=self.fonte, width=30, pady=10)
+        self.iniciarTelaPresenca["command"] = abrirTelaAtaPresenca
+        self.iniciarTelaPresenca.pack(side=RIGHT, pady=20)
+
+
+
         ########### FEITA ALEX MOREIRA E GABRIEL BANDEIRA ###########
-        self.iniciarAtaReunioes = Button(self.container3, text="Abrir Ata de Reuniões",
+        self.iniciarAtaReunioes = Button(self.container4, text="Abrir Ata de Reunião | Presença",
         font=self.fonte, width=30, pady=10)
         self.iniciarAtaReunioes["command"] = abrirTelaAtaReuniao
         self.iniciarAtaReunioes.pack(side=RIGHT, pady=20)
 
-
-        ########### FEITA POR PAULO GUILHERME E BRUNO VIEIRA ###########
-        self.iniciarTelaPresenca = Button(self.container4, text="Abrir tela Ata de Presença",
-        font=self.fonte, width=30, pady=10)
-        self.iniciarTelaPresenca["command"] = abrirTelaAtaPresenca
-        self.iniciarTelaPresenca.pack(side=RIGHT, pady=20)
 
 
 def abrirTelaCondominos():
@@ -69,12 +73,8 @@ def abrirTelaCondominos():
     # path = os.path.join('DuplaPhabloeCarlos', 'App.py')
     os.system('python '+ teste)
 
-def abrirTelaAtaReuniao():
-    pathfile = os.path.dirname(__file__)
-    teste = os.path.join(pathfile,"DuplaAlexeGabriel","ata_reuniao_view2.py")
-    # path = os.path.join('ParteAlex', 'ata_reuniao_view2.py')
-    os.system('python '+ teste)
 
+    
 def abrirTelaAtaPresenca():
     pathfile = os.path.dirname(__file__)
     teste = os.path.join(pathfile,"DuplaPauloeBruno","App.py")
@@ -82,6 +82,13 @@ def abrirTelaAtaPresenca():
     # path = os.path.join('DuplaPauloeBruno', 'App.py')
     os.system('python '+ teste)
 	
+
+def abrirTelaAtaReuniao():
+    pathfile = os.path.dirname(__file__)
+    teste = os.path.join(pathfile,"DuplaAlexeGabriel","ata_reuniao_view2.py")
+    # path = os.path.join('ParteAlex', 'ata_reuniao_view2.py')
+    os.system('python '+ teste)
+
 root = Tk()
 root.title('Tela Inicial')
 root.resizable(False, False)

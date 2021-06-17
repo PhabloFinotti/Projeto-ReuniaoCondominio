@@ -23,7 +23,7 @@ class Conexao:
         conexao.commit()
 
     def createTablePresenca(self, conexao, cursor):
-        cursor.execute('DROP TABLE IF EXISTS ata_presenca')
+        # cursor.execute('DROP TABLE IF EXISTS ata_presenca')
 
         sql = """ CREATE TABLE IF NOT EXISTS ata_presenca( 
                     pres_id INTEGER PRIMARY KEY AUTOINCREMENT,
